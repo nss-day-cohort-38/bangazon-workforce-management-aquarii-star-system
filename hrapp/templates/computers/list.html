@@ -1,0 +1,21 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+
+  <body>
+      {% block content %}
+    <h1>Computers</h1>
+    <a href="{% url 'hrapp:computer_form' %}">Add a new computer</a>
+    <ol>
+    {% for computer in all_computers %}
+        <li>
+            {{ computer.manufacturer }}
+            {{ computer.make }}
+            was purchased {{ computer.purchase_date }}
+        </li>
+        {% empty %}
+        <li>No computers have been added yet</li>
+    {% endfor %}
+    </ol>
+    {% endblock %}
+  </body>
+</html>

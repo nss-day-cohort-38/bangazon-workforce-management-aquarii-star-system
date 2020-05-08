@@ -1,0 +1,27 @@
+{% extends 'shared/base.html' %}
+
+      {% block content %}
+    <h1>Adding a new computer</h1>
+
+
+    <form action="{% url 'hrapp:computer_form' %}" method="post">
+      {% csrf_token %}
+      <fieldset>
+          <label for="make">Make: </label>
+          <input id="make" type="text" name="make">
+      </fieldset>
+      <fieldset>
+          <label for="manufacturer">Manufacturer: </label>
+          <input id="manufacturer" type="text" name="manufacturer">
+      </fieldset>
+      <fieldset>
+          <label for="purchased_date">Purchased Date: </label>
+          <input id="purchased_date" type="date" name="purchased_date">
+      </fieldset>
+      <fieldset>
+          <label for="decomission_date">Decomission Date (if applicable): </label>
+          <input id="decomission_date" type="date" name="decomission_date">
+      </fieldset>
+      <input type="submit" value="Add It" />
+    </form>
+    {% endblock %}
