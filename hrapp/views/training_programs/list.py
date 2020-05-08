@@ -2,6 +2,8 @@ import sqlite3
 from django.shortcuts import render
 from hrapp.models import TrainingProgram
 from ..connection import Connection
+# Importing datetime to compare dates
+from datetime import datetime
 
 def training_program_list(request):
     if request.method == 'GET':
@@ -33,8 +35,21 @@ def training_program_list(request):
                 all_training_programs.append(training_program)
 
         template = 'training_programs/list.html'
+
+        # SORTING PROGRAMS INTO PAST AND FUTURE
+        future_training_programs = []
+        past_training_programs = []
+
+        for training_program in all_training_programs:
+            end_date = datetime.strptime(training_program.end_date, '%Y-%m-%d')
+            if end_date > datetime.today():
+                future_training_programs.append(training_program)
+            else:
+                past_training_programs.append(training_program)
+
         context = {
-            'all_training_programs': all_training_programs
+            'past_training_programs': past_training_programs,
+            'future_training_programs': future_training_programs
         }
         
         return render(request, template, context)

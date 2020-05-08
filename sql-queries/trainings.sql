@@ -1,5 +1,5 @@
 -- SQLite
--- Seeding Training, Employee Trainings
+-- Seeding Training
 
 CREATE TABLE hrapp_training_program (
   id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
@@ -32,3 +32,22 @@ SELECT
     tp.end_date,
     tp.capacity
 FROM hrapp_training_program tp;
+
+-- MAKING SOME EMPLOYEES
+INSERT INTO hrapp_employee
+  (first_name, last_name, start_date, is_supervisor)
+VALUES
+  ("Darby", "Ross", "2019-05-07", True),
+  ("Nina", "Dale", "2020-01-01", False),
+  ("Dingo", "Taller", "2020-05-07", False);
+
+-- SEEDING EMPLOYEE TRAININGS
+INSERT INTO hrapp_employee_training_program
+  (training_program_id, employee_id)
+VALUES
+  (1, 1),
+  (1, 2),
+  (1, 3),
+  (2, 2),
+  (2, 1),
+  (3, 1);
