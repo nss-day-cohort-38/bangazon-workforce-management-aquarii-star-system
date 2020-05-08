@@ -4,6 +4,8 @@
 
 <h1>Departments</h1>
 
+<a href="{% url 'hrapp:department_form' %}">Create Department</a>
+
 <ol>
     {% for department in all_departments %}
         <li>
