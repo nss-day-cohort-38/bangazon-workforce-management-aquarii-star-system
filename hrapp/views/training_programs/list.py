@@ -1,6 +1,6 @@
 import sqlite3
 from django.shortcuts import render
-from hrapp.models import TrainingPrograms
+from hrapp.models import TrainingProgram
 from ..connection import Connection
 
 def training_program_list(request):
