@@ -1,0 +1,1 @@
+from hrapp.views.employees import employee_detail, employee_list
