@@ -14,7 +14,7 @@ def create_employee(cursor, row):
     employee.last_name = _row["last_name"]
     employee.start_date = _row["start_date"]
     # employee.department = _row["department_name"]
-    employee.computer = _row["make"]
+    employee.computer = _row["computer"]
     # employee.training_programs = _row["training_program_name"]
 
     return employee
