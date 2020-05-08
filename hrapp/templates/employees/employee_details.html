@@ -3,14 +3,10 @@
   <h1>{{ employee }}</h1>
 
   <div>Department: </div>
-  <div>Current Computer: </div>
+  <div>Current Computer: {{ employee.computer }}</div>
   <div>Training Programs: </div>
 </section>
 
 <section id="employee-actions" style="display: flex;">
-  <!-- <form action="{% url 'libraryapp:book_edit_form' book.id %}" method="GET">
-    {% csrf_token %}
-    <button>Edit</button>
-  </form> -->
 </section>
 {% endblock %}
