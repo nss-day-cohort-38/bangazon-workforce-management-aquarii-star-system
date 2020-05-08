@@ -9,13 +9,9 @@
     <ol class="training_programs">
     {% for training_program in all_training_programs %}
         <li class="training_program">
-            <h2>{{ training_program.title }}</h2>
-            <div class="training_program__description">
-                <p>Begins: {{training_program.start_date}}</p> 
-                <p>Ends: {{training_program.end_date}}</p>
-                <p>Capacity: {{train_program.capacity}}</p>
-            </div>
-            <button id="detail--{{ training_program.id }}">Details</button>
+            <a class="training_program__title" href="{% url 'hrapp:training_program' training_program.id %}">
+                {{ training_program.title }}
+            </a>
         </li>
     {% endfor %}
     </ol>
