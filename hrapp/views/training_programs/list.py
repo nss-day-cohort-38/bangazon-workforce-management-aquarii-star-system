@@ -36,5 +36,7 @@ def training_program_list(request):
         context = {
             'all_training_programs': all_training_programs
         }
+        
+        print("all_training_programs", all_training_programs)
 
         return render(request, template, context)

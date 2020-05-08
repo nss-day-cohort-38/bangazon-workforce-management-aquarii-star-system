@@ -15,6 +15,6 @@ class TrainingProgram (models.Model):
     def __str__(self):
         return self.title
       
-    def get_absolute_url(self):
-        return reverse("training_program _detail", kwargs={"pk": self.pk})
+    # def get_absolute_url(self):
+    #     return reverse("training_program _detail", kwargs={"pk": self.pk})
     
