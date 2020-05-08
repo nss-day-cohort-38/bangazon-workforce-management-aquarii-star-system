@@ -2,6 +2,7 @@ from django.urls import path
 from django.conf.urls import include
 from hrapp import views
 from .views import *
+from hrapp.models import *
 
 app_name = 'hrapp'
 urlpatterns = [
