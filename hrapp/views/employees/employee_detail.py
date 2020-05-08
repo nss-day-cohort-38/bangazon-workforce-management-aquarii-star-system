@@ -31,7 +31,7 @@ def get_employee(employee_id):
             e.first_name,
             e.last_name,
             e.start_date,
-            c.make
+            c.make AS computer
         FROM hrapp_employee e
         JOIN hrapp_employeecomputer ec ON e.id = ec.employee_id
         JOIN hrapp_computer c ON ec.computer_id = c.id
