@@ -4,12 +4,11 @@
 
     <h1>Add Employee</h1>
 
-    {% comment %} {% if employee.id is not None %}
+    {% if employee.id is not None %}
         <form action="{% url 'hrapp:employee' employee.id %}" method="post">
     {% else %}
         <form action="{% url 'hrapp:employees' %}" method="post">
-    {% endif %} {% endcomment %}
-        <form action="{% url 'hrapp:employees' %}" method="post">
+    {% endif %}
         {% csrf_token %}
         <fieldset>
             <label for="first_name">First Name: </label>
