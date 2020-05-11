@@ -11,14 +11,14 @@
     </div>
   </section>
 
-{% comment %} STOPPED HERE 2:11 {% endcomment %}
-    <section id="training-actions">
+  {% if canDelete %}
+    <section class="infoDialog" id="training-actions">
       <form action="{% url 'hrapp:training_program' training_program.id %}" method="POST">
           {% csrf_token %}
           <input type="hidden" name="actual_method" value="DELETE">
           <button>Delete</button>
       </form>
     </section>
-
+  {% endif %}
 
 {% endblock %}

@@ -27,16 +27,38 @@ def get_training_program(training_program_id):
 
         return db_cursor.fetchone()
 
+def isPast(date_string):
+    
+    date_object = datetime.strptime(date_string, '%Y-%m-%d')
+
+    if date_object < datetime.today():
+        
+        return True
+    
+
 def training_program_details(request, training_program_id):
     # Check if its a GET (showing details)
     if request.method == 'GET':
         training_program = get_training_program(training_program_id)
+        
+        # This data set can only be deleted under certain circumstances
+        # so we're deciding that at this point, still in python
+        # and passing it through context below
+        canDelete = False
+        
+        # if the end date is in the past, we can delete this training_program
+        if isPast(training_program.end_date):
+            canDelete = True
 
         template = 'training_programs/detail.html'
         context = {
-            'training_program': training_program
+            'training_program': training_program,
+            'canDelete': canDelete
         }
 
+        # passing through the candelete variable here
+        # if it's true, then we render the delete button
+        # if it's false, we don't
         return render(request, template, context)
     
     # Check if its a POST (edit or delete)
@@ -48,26 +70,14 @@ def training_program_details(request, training_program_id):
             "actual_method" in form_data
             and form_data["actual_method"] == "DELETE"
         ):
-            # Have to reach out and get the program in order to check it's date:
-            training_program = get_training_program(training_program_id)
 
-            # Check if the event has already ended
-            end_date = datetime.strptime(training_program.end_date, '%Y-%m-%d')
-            if end_date > datetime.today():
+            with sqlite3.connect(Connection.db_path) as conn:
+                db_cursor = conn.cursor()
 
-                with sqlite3.connect(Connection.db_path) as conn:
-                    db_cursor = conn.cursor()
+                db_cursor.execute("""
+                DELETE FROM hrapp_trainingprogram
+                WHERE id = ?
+                """, (training_program_id,))
 
-                    db_cursor.execute("""
-                    DELETE FROM hrapp_trainingprogram
-                    WHERE id = ?
-                    """, (training_program_id,))
-
-                return redirect(reverse('hrapp:training_programs'))
+            return redirect(reverse('hrapp:training_programs'))
             
-            else:
-                # FOR REASONS I DON'T QUITE UNDERSTAND
-                # This needs to RETURN AN HTTP OBJECT
-                # So presently, I'm just having it redirect to itself
-
-                return redirect(reverse('hrapp:training_programs'))
