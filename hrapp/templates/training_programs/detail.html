@@ -1,0 +1,13 @@
+{% extends 'shared/base.html' %}
+
+{% block content %}
+
+    <h1>{{ training_program.title }} </h1>
+    <div class="training_program__description">
+      <p>Description: {{training_program.description}}</p>
+      <p>Begins: {{training_program.start_date}}</p> 
+      <p>Ends: {{training_program.end_date}}</p>
+      <p>Capacity: {{training_program.capacity}}</p>
+    </div>
+
+{% endblock %}
