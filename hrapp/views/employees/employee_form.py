@@ -39,13 +39,14 @@ def get_employee(employee_id):
 # @login_required
 def employee_form(request):
     if request.method == 'GET':
+        departments = ""
         # departments = get_departments()
         template = 'employees/employee_form.html'
-        # context = {
-        #     'all_departments': departments
-        # }
+        context = {
+            'all_departments': departments
+        }
 
-        return render(request, template) #add context when commented back in
+        return render(request, template, context)
 
 # @login_required
 def employee_edit_form(request, employee_id):
@@ -54,9 +55,9 @@ def employee_edit_form(request, employee_id):
         employee = get_employee(employee_id)
         # departments = get_departments()
         template = 'employees/employee_form.html'
-        # context = {
-        #     'employee': employee,
-        #     'all_departments': departments
-        # }
+        context = {
+            'employee': employee,
+            # 'all_departments': departments
+        }
 
-        return render(request, template) #add context when commented back in
+        return render(request, template, context)
