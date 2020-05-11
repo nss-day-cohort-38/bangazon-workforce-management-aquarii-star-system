@@ -1,0 +1,6 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+
+{% block content %}
+<h1>{{ computer.manufacturer }} {{ computer.make }} was purchased on {{ computer.purchase_date }}</h1>
+{% endblock %}
