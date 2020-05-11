@@ -4,31 +4,30 @@
     <h1>Training Program Form</h1>
 
     {% if training_program.id is not None %}
-        {% comment %} FIXME: HERE! {% endcomment %}
-        {% comment %} <form action="{% url 'hrapp:training_program' training_program.id %}" method="post"> {% endcomment %}
+        <form action="{% url 'hrapp:training_programs' training_program.id %}" method="post">
     {% else %}
-        {% comment %} <form action="{% url 'hrapp:training_program' %}" method="post"> {% endcomment %}
+        <form action="{% url 'hrapp:training_programs' %}" method="post">
     {% endif %}
         {% csrf_token %}
         <fieldset>
-            <label for="name">Name: </label>
-            <input id="name" type="text" name="name" value="{{ training_program.name }}">
+            <label for="title">Program Title: </label>
+            <input id="title" type="text" name="title" value="{{ training_program.title }}">
         </fieldset>
         <fieldset>
             <label for="description">Description: </label>
             <input id="description" type="text" name="description" value="{{ training_program.description }}">
         </fieldset>
         <fieldset>
-            <label for="start_day">Start Day: </label>
-            <input id="start_day" type="number" name="start_day" value="{{ training_program.start_day }}">
+            <label for="start_date">Start Day: </label>
+            <input id="start_date" type="date" name="start_date" value="{{ training_program.start_date }}">
         </fieldset>
         <fieldset>
-            <label for="end_day">End Day: </label>
-            <input id="end_day" type="text" name="end_day" value="{{ training_program.end_day }}">
+            <label for="end_date">End Day: </label>
+            <input id="end_date" type="date" name="end_date" value="{{ training_program.end_date }}">
         </fieldset>
         <fieldset>
             <label for="capacity">Capacity: </label>
-            <input id="capacity" type="text" name="capacity" value="{{ training_program.capacity }}">
+            <input id="capacity" type="number" name="capacity" value="{{ training_program.capacity }}">
         </fieldset>
 
         {% if training_program.id is not None %}

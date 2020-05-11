@@ -4,6 +4,7 @@ from django.urls import reverse
 class TrainingProgram (models.Model):
   
     title = models.CharField(max_length=55)
+    description = models.CharField(max_length=1000)
     start_date = models.DateField()
     end_date = models.DateField()
     capacity = models.IntegerField()
@@ -15,6 +16,6 @@ class TrainingProgram (models.Model):
     def __str__(self):
         return self.title
       
-    # def get_absolute_url(self):
-    #     return reverse("training_program _detail", kwargs={"pk": self.pk})
+    def get_absolute_url(self):
+        return reverse("training_program _detail", kwargs={"pk": self.pk})
     

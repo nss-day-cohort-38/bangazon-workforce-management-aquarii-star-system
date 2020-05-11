@@ -16,10 +16,11 @@ def get_training_program(training_program_id):
         SELECT
             tp.id,
             tp.title,
+            tp.description,
             tp.start_date,
             tp.end_date,
             tp.capacity
-        FROM hrapp_training_program tp
+        FROM hrapp_trainingprogram tp
         WHERE tp.id = ?;
         """, (training_program_id,))
 

@@ -4,7 +4,7 @@
 {% block content %}
     <h1>Upcoming Training Programs</h1>
 
-    {% comment %} <a href="{% url 'hrapp:training_program' %}">Add Training</a> {% endcomment %}
+    <a href="{% url 'hrapp:training_program_form' %}">Add Training</a>
 
     <ol class="future_training_programs">
     {% for training_program in future_training_programs %}

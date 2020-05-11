@@ -1,5 +1,6 @@
 import sqlite3
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
 from hrapp.models import TrainingProgram
 from ..connection import Connection
 # Importing datetime to compare dates
@@ -18,7 +19,7 @@ def training_program_list(request):
                   tp.start_date,
                   tp.end_date,
                   tp.capacity
-              FROM hrapp_training_program tp;
+              FROM hrapp_trainingprogram tp;
             """)
 
             all_training_programs = []
@@ -53,3 +54,23 @@ def training_program_list(request):
         }
         
         return render(request, template, context)
+    
+    elif request.method == 'POST':
+        form_data = request.POST
+
+        with sqlite3.connect(Connection.db_path) as conn:
+            db_cursor = conn.cursor()
+
+            db_cursor.execute("""
+            INSERT INTO hrapp_trainingprogram
+            (
+                title, description, start_date,
+                end_date, capacity
+            )
+            VALUES (?, ?, ?, ?, ?)
+            """,
+            (form_data['title'], form_data['description'],
+                form_data['start_date'], form_data['end_date'],
+                form_data["capacity"]))
+
+        return redirect(reverse('hrapp:training_programs'))
