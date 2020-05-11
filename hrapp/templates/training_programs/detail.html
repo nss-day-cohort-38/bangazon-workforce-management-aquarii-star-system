@@ -1,7 +1,7 @@
 {% extends 'shared/base.html' %}
 
 {% block content %}
-
+  <section id="training-details" style="display:flex;">
     <h1>{{ training_program.title }} </h1>
     <div class="training_program__description">
       <p>Description: {{training_program.description}}</p>
@@ -9,5 +9,14 @@
       <p>Ends: {{training_program.end_date}}</p>
       <p>Capacity: {{training_program.capacity}}</p>
     </div>
+  </section>
+
+  <section id="training-actions" style="display:flex;">
+    <form action="{% url 'hrapp:training' training_program.id %}" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="actual_method" value="DELETE">
+        <button>Delete</button>
+    </form>
+  </section>
 
 {% endblock %}
