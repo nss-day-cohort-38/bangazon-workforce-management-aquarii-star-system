@@ -66,5 +66,8 @@ def training_program_details(request, training_program_id):
                 return redirect(reverse('hrapp:training_programs'))
             
             else:
-                # FIXME: THIS NEEDS TO SOMEHOW RETURN AN HTTP OBJECT?
-                pass
+                # FOR REASONS I DON'T QUITE UNDERSTAND
+                # This needs to RETURN AN HTTP OBJECT
+                # So presently, I'm just having it redirect to itself
+
+                return redirect(reverse('hrapp:training_programs'))
