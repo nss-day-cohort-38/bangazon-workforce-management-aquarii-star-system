@@ -1,0 +1,50 @@
+{% extends 'shared/base.html' %}
+
+{% block content %}
+
+    <h1>Add Employee</h1>
+
+    {% comment %} {% if employee.id is not None %}
+        <form action="{% url 'hrapp:employee' employee.id %}" method="post">
+    {% else %}
+        <form action="{% url 'hrapp:employees' %}" method="post">
+    {% endif %} {% endcomment %}
+        <form action="{% url 'hrapp:employees' %}" method="post">
+        {% csrf_token %}
+        <fieldset>
+            <label for="first_name">First Name: </label>
+            <input id="first_name" type="text" name="first_name" value="{{ employee.first_name }}">
+        </fieldset>
+        <fieldset>
+            <label for="last_name">Last Name: </label>
+            <input id="last_name" type="text" name="last_name" value="{{ employee.last_name }}">
+        </fieldset>
+        <fieldset>
+            <label for="start_date">Start Date: </label>
+            <input id="start_date" type="date" name="start_date" value="{{ employee.start_date }}">
+        </fieldset>
+        <fieldset>
+            <label for="is_supervisor">is_supervisor: </label>
+            <input id="is_supervisor" type="text" name="is_supervisor" value="{{ employee.is_supervisor }}">
+        </fieldset>
+        {% comment %} <fieldset>
+            <label for="department">Department: </label>
+            <select id="department" type="text" name="department">
+                {% for department in all_libraries %}
+                <option {% if department.id == employee.department_id %}selected{% endif %} value="{{ department.id }}">
+                    {{ department.name }}</option>
+                {% endfor %}
+            </select>
+        </fieldset> {% endcomment %}
+
+        <input type="submit" value="Create" />
+
+
+        {% comment %} {% if employee.id is not None %}
+            <input type="hidden" name="actual_method" value="PUT">
+            <input type="submit" value="Update" />
+        {% else %}
+            <input type="submit" value="Create" />
+        {% endif %} {% endcomment %}
+    
+{% endblock content %}

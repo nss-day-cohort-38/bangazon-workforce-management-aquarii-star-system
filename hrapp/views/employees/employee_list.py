@@ -5,7 +5,7 @@ from hrapp.models import Employee
 
 def employee_list(request):
     if request.method == 'GET':
-        with sqlite3.connect("/Users/joeshep/workspace/python/bangazon-workforce-boilerplate/bangazonworkforcemgt/db.sqlite3") as conn:
+        with sqlite3.connect("/Users/MainTechPiece/workspace/python/bangazon-workforce-management-aquarii-star-system/db.sqlite3") as conn:
             conn.row_factory = sqlite3.Row
             db_cursor = conn.cursor()
 
