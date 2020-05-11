@@ -13,7 +13,7 @@ def create_employee(cursor, row):
     employee.first_name = _row["first_name"]
     employee.last_name = _row["last_name"]
     employee.start_date = _row["start_date"]
-    # employee.department = _row["department_name"]
+    employee.department = _row["dept_name"]
     employee.computer = _row["computer"]
     # employee.training_programs = _row["training_program_name"]
 
@@ -31,8 +31,10 @@ def get_employee(employee_id):
             e.first_name,
             e.last_name,
             e.start_date,
+            d.dept_name,
             c.make AS computer
         FROM hrapp_employee e
+        JOIN hrapp_department d ON d.id = e.department_id
         JOIN hrapp_employeecomputer ec ON e.id = ec.employee_id
         JOIN hrapp_computer c ON ec.computer_id = c.id
         WHERE e.id = ?
