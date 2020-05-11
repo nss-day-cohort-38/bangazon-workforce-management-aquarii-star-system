@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect, reverse
 from hrapp.views.connection import Connection
 from hrapp.models.computer import Computer
 from django.contrib.auth.decorators import login_required
-from ...models.modelfactory import model_factory
+from hrapp.models.modelfactory import model_factory
 
 @login_required
 def computer_list(request):

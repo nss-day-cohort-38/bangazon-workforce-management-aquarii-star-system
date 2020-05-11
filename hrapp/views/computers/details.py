@@ -1,9 +1,9 @@
 import sqlite3
 from django.urls import reverse
 from django.shortcuts import render, redirect
-from ..connection import Connection
-from ...models.modelfactory import model_factory
-from ...models.computer import Computer
+from hrapp.views.connection import Connection
+from hrapp.models.modelfactory import model_factory
+from hrapp.models.computer import Computer
 
 def get_computer(computer_id):
     with sqlite3.connect(Connection.db_path) as conn:
