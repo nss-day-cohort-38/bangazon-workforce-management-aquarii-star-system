@@ -27,19 +27,18 @@
             <select id="department" type="text" name="department">
                 {% for department in all_departments %}
                 <option {% if department.id == employee.department_id %}selected{% endif %} value="{{ department.id }}">
-                    {{ department.name }}</option>
+                    {{ department.dept_name }}</option>
                 {% endfor %}
             </select>
         </fieldset>
 
         <input type="submit" value="Create" />
 
-
-        {% comment %} {% if employee.id is not None %}
+        {% if employee.id is not None %}
             <input type="hidden" name="actual_method" value="PUT">
             <input type="submit" value="Update" />
         {% else %}
             <input type="submit" value="Create" />
-        {% endif %} {% endcomment %}
+        {% endif %}
     
 {% endblock content %}
