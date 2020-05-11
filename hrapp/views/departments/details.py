@@ -19,7 +19,7 @@ def get_department(department_id):
             e.first_name,
             e.last_name
         FROM hrapp_department d
-        JOIN hrapp_employee e ON d.id = e.department_id
+        LEFT JOIN hrapp_employee e ON d.id = e.department_id
         WHERE d.id = ?
         """, (department_id,))
 
@@ -32,34 +32,34 @@ def department_details(request, department_id):
     if request.method == 'GET':
         department = get_department(department_id)
 
-        department_employees = []
+        # department_employees = []
 
-        for employee in department:
-            department_employees.append(employee)
+        # for employee in department:
+        #     department_employees.append(employee)
 
         template = 'departments/detail.html'
         context = {
-            'department': department,
-            'employees': department_employees
+            'department': department
+            # 'employees': department_employees
         }
 
         return render(request, template, context)
 
-def create_department(cursor, row):
-    _row = sqlite3.Row(cursor, row)
+# def create_department(cursor, row):
+#     _row = sqlite3.Row(cursor, row)
 
-    department = Department()
-    department.id = _row["id"]
-    department.dept_name = _row["dept_name"]
-    department.budget = _row["budget"]
+#     department = Department()
+#     department.id = _row["id"]
+#     department.dept_name = _row["dept_name"]
+#     department.budget = _row["budget"]
 
-    department.employees = []
+#     department.employees = []
 
-    employee = Employee()
-    employee.id = _row["id"]
-    employee.first_name = _row["first_name"]
-    employee.last_name = _row["last_name"]
+#     employee = Employee()
+#     employee.id = _row["id"]
+#     employee.first_name = _row["first_name"]
+#     employee.last_name = _row["last_name"]
 
-    return (department, employee,)
+#     return (department, employee,)
 
 

@@ -19,7 +19,7 @@ def department_list(request):
                 e.first_name,
                 e.last_name
             FROM hrapp_department d
-            JOIN hrapp_employee e ON d.id = e.department_id
+            LEFT JOIN hrapp_employee e ON d.id = e.department_id
             """)
 
             departments = db_cursor.fetchall()
@@ -29,7 +29,8 @@ def department_list(request):
             for (department, employee) in departments:
                 if department.id not in department_groups:
                     department_groups[department.id] = department
-                    department_groups[department.id].employees.append(employee)
+                    if employee.first_name is not None:
+                        department_groups[department.id].employees.append(employee)
                 else:
                     department_groups[department.id].employees.append(employee)
 
