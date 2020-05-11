@@ -55,4 +55,4 @@ def training_program_details(request, training_program_id):
                 WHERE id = ?
                 """, (training_program_id,))
 
-            return redirect(reverse('hrapp:training_program'))
+            return redirect(reverse('hrapp:training_programs'))
