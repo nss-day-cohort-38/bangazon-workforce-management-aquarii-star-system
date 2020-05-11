@@ -42,12 +42,11 @@ def computer_list(request):
         (
                 make,
                 purchase_date,
-                decommission_date,
                 manufacturer
         )
-        VALUES (?, ?, ?, ?)
+        VALUES (?, ?, ?)
         """,
         (form_data['make'], form_data['purchase_date'],
-            form_data['decommission_date'], form_data['manufacturer']))
+            form_data['manufacturer']))
 
     return redirect(reverse('hrapp:computers'))
