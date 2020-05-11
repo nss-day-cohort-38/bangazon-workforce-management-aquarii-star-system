@@ -22,20 +22,9 @@ def department_list(request):
             JOIN hrapp_employee e ON d.id = e.department_id
             """)
 
-            # all_departments = []
-            # dataset = db_cursor.fetchall()
-
             departments = db_cursor.fetchall()
 
             department_groups = {}
-
-            # for row in dataset:
-            #     department = Department()
-            #     department.id = row['id']
-            #     department.dept_name = row['dept_name']
-            #     department.budget = row['budget']
-
-            #     all_departments.append(department)
 
             for (department, employee) in departments:
                 if department.id not in department_groups:

@@ -8,7 +8,7 @@ from ..connection import Connection
 
 def get_department(department_id):
     with sqlite3.connect(Connection.db_path) as conn:
-        conn.row_factory = create_department
+        conn.row_factory = sqlite3.Row
         db_cursor = conn.cursor()
 
         db_cursor.execute("""
@@ -23,16 +23,24 @@ def get_department(department_id):
         WHERE d.id = ?
         """, (department_id,))
 
-        return db_cursor.fetchone()
+        department = db_cursor.fetchone()
+
+        return department
 
 @login_required
 def department_details(request, department_id):
     if request.method == 'GET':
         department = get_department(department_id)
 
+        department_employees = []
+
+        for employee in department:
+            department_employees.append(employee)
+
         template = 'departments/detail.html'
         context = {
-            'department': department
+            'department': department,
+            'employees': department_employees
         }
 
         return render(request, template, context)
@@ -45,15 +53,13 @@ def create_department(cursor, row):
     department.dept_name = _row["dept_name"]
     department.budget = _row["budget"]
 
-    department_employees = []
+    department.employees = []
 
     employee = Employee()
     employee.id = _row["id"]
     employee.first_name = _row["first_name"]
     employee.last_name = _row["last_name"]
 
-    department_employees.append(employee)
-
-    return department
+    return (department, employee,)
 
 
