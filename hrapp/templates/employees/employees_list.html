@@ -5,10 +5,19 @@
 
 <ol>
 {% for employee in employees %}
+    {% if employee.is_supervisor == True %}
     <li>
-        <p>{{ employee }}</p>
-        Current computer: {{employee.computer}}
+        <a class="employee__name" href="{% url 'hrapp:employee' employee.id %}">
+            {{ employee }} (Supervisor)
+        </a>
     </li>
+    {% else %}
+    <li>
+        <a class="employee__name" href="{% url 'hrapp:employee' employee.id %}">
+            {{ employee }}
+        </a>
+    </li>
+    {% endif %}
 {% endfor %}
 </ol>
 {% endblock content %}
