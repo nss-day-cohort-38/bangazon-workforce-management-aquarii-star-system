@@ -5,6 +5,8 @@
   <div>Department: {{ employee.department }}</div>
   <div>Current Computer: {{ employee.computer }}</div>
   <div>Training Programs: </div>
+  <a href="{% url 'hrapp:employee_form' %}">Edit</a>
+
 </section>
 
 <section id="employee-actions" style="display: flex;">
