@@ -2,7 +2,7 @@ import sqlite3
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from hrapp.models import TrainingProgram
-from ..connection import Connection
+from hrapp.views.connection import Connection
 # Importing datetime to compare dates
 from datetime import datetime
 
