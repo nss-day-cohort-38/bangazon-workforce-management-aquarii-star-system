@@ -21,20 +21,20 @@ def get_employee(employee_id):
 
         return db_cursor.fetchone()
 
-# def get_departments():
-#     with sqlite3.connect(Connection.db_path) as conn:
-#         conn.row_factory = model_factory(Departments)
-#         db_cursor = conn.cursor()
+def get_departments():
+    with sqlite3.connect(Connection.db_path) as conn:
+        conn.row_factory = model_factory(Departments)
+        db_cursor = conn.cursor()
 
-#         db_cursor.execute("""
-#         select
-#             d.id,
-#             d.name,
-#             d.address
-#         from hrapp_departments d
-#         """)
+        db_cursor.execute("""
+        select
+            d.id,
+            d.name,
+            d.address
+        from hrapp_departments d
+        """)
 
-#         return db_cursor.fetchall()
+        return db_cursor.fetchall()
 
 # @login_required
 def employee_form(request):

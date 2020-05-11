@@ -22,15 +22,15 @@
             <label for="start_date">Start Date: </label>
             <input id="start_date" type="date" name="start_date" value="{{ employee.start_date }}">
         </fieldset>
-        {% comment %} <fieldset>
+        <fieldset>
             <label for="department">Department: </label>
             <select id="department" type="text" name="department">
-                {% for department in all_libraries %}
+                {% for department in all_departments %}
                 <option {% if department.id == employee.department_id %}selected{% endif %} value="{{ department.id }}">
                     {{ department.name }}</option>
                 {% endfor %}
             </select>
-        </fieldset> {% endcomment %}
+        </fieldset>
 
         <input type="submit" value="Create" />
 
