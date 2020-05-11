@@ -4,7 +4,7 @@
   <body>
       {% block content %}
     <h1>Computers</h1>
-    <a href="{% url 'hrapp:computer_form' %}">Add a new computer</a>
+    <a href="{% url 'hrapp:computer' %}">Add a new computer</a>
     <ol>
     {% for computer in all_computers %}
         <li>
