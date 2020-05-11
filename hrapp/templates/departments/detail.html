@@ -4,5 +4,12 @@
 
 <h1>{{ department.dept_name }}</h1>
 <div>Budget: ${{ department.budget }}</div>
+<div>Employees:
+    <ul>
+        {% for employee in department.employees %}
+            <li>{{ employee.first_name }} {{ employee.last_name }}</li>
+        {% endfor %}
+    </ul>
+</div>
 
 {% endblock %}
