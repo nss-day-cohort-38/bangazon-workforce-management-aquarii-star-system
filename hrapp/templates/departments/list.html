@@ -11,12 +11,12 @@
         <li>
             <a href="{% url 'hrapp:department' department.id %}"><h4>{{ department.dept_name }}</h4></a>
             <div>Budget: ${{ department.budget }}</div>
-            <div>Employees: {{ len(department.employees) }}
-                <ul>
+            <div>Number of Employees: {{ department.employees|length }}
+                {% comment %} <ul>
                     {% for employee in department.employees %}
                         <li>{{ employee.first_name }} {{ employee.last_name }}</li>
                     {% endfor %}
-                </ul>
+                </ul> {% endcomment %}
             </div>
         </li>
     {% endfor %}
