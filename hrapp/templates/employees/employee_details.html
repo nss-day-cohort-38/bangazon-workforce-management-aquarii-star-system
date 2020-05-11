@@ -1,0 +1,12 @@
+{% extends 'shared/base.html' %} {% block content %}
+<section id="employee-details">
+  <h1>{{ employee }}</h1>
+
+  <div>Department: </div>
+  <div>Current Computer: {{ employee.computer }}</div>
+  <div>Training Programs: </div>
+</section>
+
+<section id="employee-actions" style="display: flex;">
+</section>
+{% endblock %}
