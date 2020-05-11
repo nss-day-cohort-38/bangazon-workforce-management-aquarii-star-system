@@ -1,4 +1,5 @@
 import sqlite3
+from datetime import datetime
 from django.urls import reverse
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
@@ -47,12 +48,23 @@ def training_program_details(request, training_program_id):
             "actual_method" in form_data
             and form_data["actual_method"] == "DELETE"
         ):
-            with sqlite3.connect(Connection.db_path) as conn:
-                db_cursor = conn.cursor()
+            # Have to reach out and get the program in order to check it's date:
+            training_program = get_training_program(training_program_id)
 
-                db_cursor.execute("""
-                DELETE FROM hrapp_trainingprogram
-                WHERE id = ?
-                """, (training_program_id,))
+            # Check if the event has already ended
+            end_date = datetime.strptime(training_program.end_date, '%Y-%m-%d')
+            if end_date > datetime.today():
 
-            return redirect(reverse('hrapp:training_programs'))
+                with sqlite3.connect(Connection.db_path) as conn:
+                    db_cursor = conn.cursor()
+
+                    db_cursor.execute("""
+                    DELETE FROM hrapp_trainingprogram
+                    WHERE id = ?
+                    """, (training_program_id,))
+
+                return redirect(reverse('hrapp:training_programs'))
+            
+            else:
+                # FIXME: THIS NEEDS TO SOMEHOW RETURN AN HTTP OBJECT?
+                pass
