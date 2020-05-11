@@ -11,13 +11,7 @@
         <li>
             <a href="{% url 'hrapp:department' department.id %}"><h4>{{ department.dept_name }}</h4></a>
             <div>Budget: ${{ department.budget }}</div>
-            <div>Number of Employees: 
-            {% if not department.employees %}
-                0
-            {% else %}
-                {{ department.employees|length }}
-            {% endif %}
-            </div>
+            <div>Number of Employees: {{ department.employees|length }}</div>
         </li>
     {% endfor %}
 </ol>
