@@ -32,8 +32,6 @@
             </select>
         </fieldset>
 
-        <input type="submit" value="Create" />
-
         {% if employee.id is not None %}
             <input type="hidden" name="actual_method" value="PUT">
             <input type="submit" value="Update" />

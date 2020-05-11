@@ -3,23 +3,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from hrapp.models import Employee, model_factory, Department
 from ..connection import Connection
-
-def get_employee(employee_id):
-    with sqlite3.connect(Connection.db_path) as conn:
-        conn.row_factory = model_factory(Employee)
-        db_cursor = conn.cursor()
-        db_cursor.execute("""
-        SELECT
-            e.id,
-            e.first_name,
-            e.last_name,
-            e.start_date,
-            e.is_supervisor
-        FROM hrapp_employee e;
-        WHERE e.id = ?
-        """, (employee_id,))
-
-        return db_cursor.fetchone()
+from .employee_detail import get_employee
 
 def get_departments():
     with sqlite3.connect(Connection.db_path) as conn:
