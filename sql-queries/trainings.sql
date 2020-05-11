@@ -10,6 +10,14 @@
 --   end_date DATE NOT NULL,
 --   capacity INTEGER NOT NULL
 -- );
+DROP TABLE hrapp_department;
+CREATE TABLE hrapp_department 
+  (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, dept_name, budget);
+
+INSERT INTO hrapp_department
+(dept_name, budget)
+VALUES
+('Customer Service', 20000.00), ('Marketing', 40000.00), ('Engineering', 50000.00);
 
 INSERT INTO hrapp_trainingprogram 
   (title, description, start_date, end_date, capacity) 
