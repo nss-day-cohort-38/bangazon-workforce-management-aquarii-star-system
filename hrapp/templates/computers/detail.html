@@ -3,6 +3,9 @@
 
 {% block content %}
 <h1>{{ computer.manufacturer }} {{ computer.make }} was purchased on {{ computer.purchase_date }}</h1>
+{% if computer.decommission_date %}
+<h2>This computer was decommissioned on {{ computer.decommission_date }}</h2>
+{% endif %}
 <form action="{% url 'hrapp:computer' computer.id %}" method="POST">
     {% csrf_token %}
     <input type="hidden" name="actual_method" value="DELETE">
