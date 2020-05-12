@@ -1,0 +1,64 @@
+{% extends 'shared/base.html' %}
+
+{% block content %}
+
+    {% if employee.id is None %}
+        <h1>Add Employee</h1>
+    {% else %}
+        <h1>Update Employee Info</h1>
+    {% endif %}
+
+    {% if employee.id is not None %}
+        <form action="{% url 'hrapp:employee' employee.id %}" method="post">
+    {% else %}
+        <form action="{% url 'hrapp:employees' %}" method="post">
+    {% endif %}
+        {% csrf_token %}
+        <fieldset>
+            <label for="first_name">First Name: </label>
+            {% if employee.id is not None %}
+                <label>{{ employee.first_name }}</label>
+            {% else %}
+                <input id="first_name" type="text" name="first_name" value="{{ employee.first_name }} ">
+            {% endif %}
+        </fieldset>
+        <fieldset>
+            <label for="last_name">Last Name: </label>
+            <input id="last_name" type="text" name="last_name" value="{{ employee.last_name }}">
+        </fieldset>
+        {% if employee.id is None %}
+            <fieldset>
+                <label for="start_date">Start Date: </label>
+                <input id="start_date" type="date" name="start_date" value="{{ employee.start_date }}">
+            </fieldset>
+        {% endif %}
+        <fieldset>
+            <label for="department">Department: </label>
+            <select id="department" type="text" name="department">
+                {% for department in all_departments %}
+                <option {% if department.id == employee.department.id %}selected{% endif %} value="{{ department.id }}">
+                    {{ department.dept_name }}</option>
+                {% endfor %}
+            </select>
+        </fieldset>
+
+        {% if employee.id is not None %}
+        <fieldset>
+            <label for="computer">Computer: </label>
+            <select id="computer" type="text" name="computer">
+                {% for computer in all_computers %}
+                <option {% if computer.id == employee.computer.id %}selected{% endif %} value="{{ computer.id }}">
+                    {{ computer.make }}</option>
+                {% endfor %}
+            </select>
+        </fieldset>
+        {% endif %}
+
+        {% if employee.id is not None %}
+            <input type="hidden" name="actual_method" value="PUT">
+            <input type="submit" value="Update" />
+        {% else %}
+            <input type="submit" value="Create" />
+        {% endif %}
+    
+{% endblock %}
