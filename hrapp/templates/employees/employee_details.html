@@ -2,15 +2,19 @@
 <section id="employee-details">
   <h1>{{ employee.first_name }} {{ employee.last_name }}</h1>
 
-  <div>Department: {{ employee.department }}</div>
+  <div>Department: {{ employee.department.name }}</div>
   <div>Current Computer: {{ employee.computer_manufacturer }} {{ employee.computer_make }}</div>
   <div>Training Programs: </div>
     <ul>
-      {% for training_program in employee.training_programs %}
+      {% if employee.training_programs|length > 0 %}
+        {% for training_program in employee.training_programs %}
           <li>
             {{ training_program.title }}
           </li>
-      {% endfor %}
+        {% endfor %}
+      {% else %}
+      <li>No training programs attended</li>
+      {% endif %}
     </ul>
 </section>
 

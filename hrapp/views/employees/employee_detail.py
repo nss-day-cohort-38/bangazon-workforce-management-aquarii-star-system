@@ -2,7 +2,7 @@ import sqlite3
 from django.urls import reverse
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from hrapp.models import Employee, Computer, TrainingProgram
+from hrapp.models import Employee, Computer, TrainingProgram, Department
 from ..connection import Connection
 
 def create_employee(cursor, row):
@@ -13,9 +13,22 @@ def create_employee(cursor, row):
     employee.first_name = _row["first_name"]
     employee.last_name = _row["last_name"]
     employee.start_date = _row["start_date"]
-    employee.department = _row["dept_name"]
     employee.computer_manufacturer = _row["computer_manufacturer"]
     employee.computer_make = _row["computer_make"]
+
+    department = Department()
+    department.id = _row["dept_id"]
+    department.name = _row["dept_name"]
+    department.budget = _row["dept_budget"]
+    employee.department = department
+
+    computer = Computer()
+    computer.id = _row["comp_id"]
+    computer.manufacturer = _row["computer_manufacturer"]
+    computer.make = _row["computer_make"]
+    computer.purchase_date = _row["comp_purchase_date"]
+    computer.decommission_date = _row["comp_decommission_date"]
+    employee.computer = computer
 
     employee.training_programs = []
 
@@ -27,7 +40,7 @@ def create_employee(cursor, row):
     training_program.end_date = _row["training_program_end_date"]
     training_program.capacity = _row["training_program_capacity"]
 
-    return (employee, training_program,)
+    return (employee, department, computer, training_program)
 
 
 def get_employee(employee_id):
@@ -41,7 +54,12 @@ def get_employee(employee_id):
             e.first_name,
             e.last_name,
             e.start_date,
+            d.id AS dept_id,
             d.dept_name,
+            d.budget AS dept_budget,
+            c.id AS comp_id,
+            c.purchase_date AS comp_purchase_date,
+            c.decommission_date AS comp_decommission_date,
             c.manufacturer AS computer_manufacturer,
             c.make AS computer_make,
             tp.id AS training_program_id,
@@ -58,14 +76,14 @@ def get_employee(employee_id):
             JOIN hrapp_employeetrainingprogram etp ON etp.employee_id = e.id
             JOIN hrapp_trainingprogram tp ON etp.training_program_id = tp.id
         WHERE
-            e.id = ?
+            e.id = ?;
         """, (employee_id,))
 
     employee_data = db_cursor.fetchall()
 
     employee_with_programs = {}
 
-    for (employee, training_program) in employee_data:
+    for (employee, department, computer, training_program) in employee_data:
 
         if employee.id not in employee_with_programs:
             employee_with_programs[employee.id] = employee
