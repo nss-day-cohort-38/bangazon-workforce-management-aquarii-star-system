@@ -46,10 +46,10 @@ def computer_details(request, computer_id):
         computer = get_computer(computer_id)
         employee_computer = get_employee_computer(computer_id)
         
-        canDelete = False
+        canDelete = True
 
         if len(employee_computer) is 0:
-            canDelete = True
+            canDelete = False
         
         template = 'computers/detail.html'
         context = {

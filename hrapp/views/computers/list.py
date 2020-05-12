@@ -34,19 +34,26 @@ def computer_list(request):
     elif request.method == 'POST':
         form_data = request.POST
 
-    with sqlite3.connect(Connection.db_path) as conn:
-        db_cursor = conn.cursor()
+        with sqlite3.connect(Connection.db_path) as conn:
+            db_cursor = conn.cursor()
 
-        db_cursor.execute("""
-        INSERT INTO hrapp_computer
-        (
-                make,
-                purchase_date,
-                manufacturer
-        )
-        VALUES (?, ?, ?)
-        """,
-        (form_data['make'], form_data['purchase_date'],
-            form_data['manufacturer']))
+            db_cursor.execute("""
+            INSERT INTO hrapp_computer
+            (
+                    make,
+                    purchase_date,
+                    manufacturer
+            )
+            VALUES (?, ?, ?)
+            """,
+            (form_data['make'], form_data['purchase_date'],
+                form_data['manufacturer']))
+            
+        with sqlite3.connect(Connection.db_path) as conn:
+            db_cursor = conn.cursor()
+            
+            db_cursor.execute(
+                
+            )
 
-    return redirect(reverse('hrapp:computers'))
+        return redirect(reverse('hrapp:computers'))
