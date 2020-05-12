@@ -33,7 +33,8 @@ def employee_list(request):
                 employee.last_name = row['last_name']
                 employee.start_date = row['start_date']
                 employee.is_supervisor = row['is_supervisor']
-                employee.department = row['dept_name']
+                ## Changed from employee.department
+                employee.dept_name = row['dept_name']
 
                 all_employees.append(employee)
 

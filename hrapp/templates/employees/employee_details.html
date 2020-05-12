@@ -2,8 +2,8 @@
 <section id="employee-details">
   <h1>{{ employee.first_name }} {{ employee.last_name }}</h1>
 
-  <div>Department: {{ employee.department }}</div>
-  <div>Current Computer: {{ employee.computer_manufacturer }} {{ employee.computer_make }}</div>
+  <div>Department: {{ employee.dept_name }}</div>
+  <div>Current Computer: {{ employee.computer }}</div>
   <div>Training Programs: </div>
     <ul>
       {% for training_program in employee.training_programs %}
