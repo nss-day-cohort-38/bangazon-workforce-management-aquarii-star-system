@@ -52,8 +52,14 @@ def computer_list(request):
         with sqlite3.connect(Connection.db_path) as conn:
             db_cursor = conn.cursor()
             
-            db_cursor.execute(
-                
-            )
+            db_cursor.execute("""
+                INSERT INTO hrapp_employeecomputer
+                    (
+                        computer_id,
+                        employee_id
+                    )
+                VALUES (?, ?)
+            """, 
+            (form_data['computer_id'], form_data['employee_id']))
 
         return redirect(reverse('hrapp:computers'))
