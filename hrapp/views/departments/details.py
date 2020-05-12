@@ -1,7 +1,7 @@
 import sqlite3
 from django.urls import reverse
 from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
+# from django.contrib.auth.decorators import login_required
 from hrapp.models import Department, Employee
 from ..connection import Connection
 
@@ -24,7 +24,7 @@ def get_department(department_id):
 
         return department
 
-@login_required
+# @login_required
 def department_details(request, department_id):
     if request.method == 'GET':
         department = get_department(department_id)
