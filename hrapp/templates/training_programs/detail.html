@@ -21,4 +21,17 @@
     </section>
   {% endif %}
 
+  <section class="employees">
+    <h2>Employees in Program:</h2>
+    <ol class="employees_in_program">
+      {% for employee in employees_in_program %}
+        <li class="employee">
+          <a href="{% url 'hrapp:employee' employee.id %}">
+            {{ employee.first_name }} {{ employee.last_name }}
+          </a>
+        </li>
+      {% endfor %}
+    </ol>
+  </section>
+
 {% endblock %}

@@ -31,18 +31,18 @@ def get_employees_in_program(training_program_id):
         conn.row_factory = model_factory(Employee)
         db_cursor = conn.cursor()
 
-        # TODO: expand with users signed up, etc.
         db_cursor.execute("""
-        SELECT
-            e.id AS employee_id,
+            SELECT
+            et.training_program_id AS trainingID,
+            et.employee_id AS id,
             e.first_name,
             e.last_name
-        FROM hrapp_employee e
-        JOIN hrapp_employeetrainingprogram et ON e.id = et.employee_id
-        WHERE et.id = ?;
+            FROM hrapp_employeetrainingprogram et
+            JOIN hrapp_employee e ON e.id = et.employee_id
+            WHERE et.training_program_id = ?; 
         """, (training_program_id,))
 
-        return db_cursor.fetchone()
+        return db_cursor.fetchall()
 
 
 def isPast(date_string):
@@ -58,7 +58,7 @@ def training_program_details(request, training_program_id):
     # Check if its a GET (showing details)
     if request.method == 'GET':
         training_program = get_training_program(training_program_id)
-        
+        employees_in_program = get_employees_in_program(training_program_id)
         # This data set can only be deleted under certain circumstances
         # so we're deciding that at this point, still in python
         # and passing it through context below
@@ -71,6 +71,7 @@ def training_program_details(request, training_program_id):
         template = 'training_programs/detail.html'
         context = {
             'training_program': training_program,
+            'employees_in_program': employees_in_program,
             'canDelete': canDelete
         }
 
