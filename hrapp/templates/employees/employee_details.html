@@ -15,7 +15,7 @@
   <div>Training Programs:</div>
   <ul>
     {% if employee.training_programs %}
-      {% for training_program in employee.traingit ping_programs %}
+      {% for training_program in employee.training_programs %}
         <li>{{ training_program.title }}</li>
       {% endfor %}
     {% endif %}
