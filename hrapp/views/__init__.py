@@ -1,4 +1,4 @@
-from .employees import employee_detail, employee_list
+from .employees import employee_detail, employee_list, employee_form, employee_edit_form
 from .home import home
 from .auth.logout import logout_user
 from .computers.list import computer_list

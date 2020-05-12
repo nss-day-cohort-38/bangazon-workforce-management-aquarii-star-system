@@ -1,7 +1,9 @@
 import sqlite3
 from django.shortcuts import render
-from hrapp.models import Employee
+from hrapp.models import Employee, Department
 from ..connection import Connection
+from django.urls import reverse
+from django.shortcuts import redirect
 
 def employee_list(request):
     if request.method == 'GET':
@@ -20,7 +22,7 @@ def employee_list(request):
                 d.dept_name
             FROM
                 hrapp_employee e
-                JOIN hrapp_department d ON d.id = e.department_id
+                LEFT JOIN hrapp_department d ON d.id = e.department_id
             """)
 
             all_employees = []
@@ -33,14 +35,31 @@ def employee_list(request):
                 employee.last_name = row['last_name']
                 employee.start_date = row['start_date']
                 employee.is_supervisor = row['is_supervisor']
-                ## Changed from employee.department
-                employee.dept_name = row['dept_name']
+
+                department = Department()
+                department.dept_name = row['dept_name']
+
+                employee.department = department
 
                 all_employees.append(employee)
 
-    template = 'employees/employees_list.html'
-    context = {
-        'employees': all_employees
-    }
+        template = 'employees/employees_list.html'
+        context = {
+            'employees': all_employees
+        }
 
-    return render(request, template, context)
+        return render(request, template, context)
+
+    elif request.method == 'POST':
+        form_data = request.POST
+
+        with sqlite3.connect(Connection.db_path) as conn:
+            db_cursor = conn.cursor()
+
+            db_cursor.execute("""
+            INSERT INTO hrapp_employee (first_name, last_name, start_date, department_id, is_supervisor)
+            VALUES (?, ?, ?, ?, 0)
+            """,
+            (form_data['first_name'], form_data['last_name'], form_data['start_date'], form_data['department']))
+
+        return redirect(reverse('hrapp:employees'))
