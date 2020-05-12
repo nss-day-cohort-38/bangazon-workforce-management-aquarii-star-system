@@ -4,7 +4,39 @@
     "pk": 1,
     "fields": {
       "computer_id": 1,
-      "employee_id": 1
+      "employee_id": 1,
+      "assign_date": "2008-07-05",
+      "unassign_date": "2009-07-05"
+    }
+  },
+  {
+    "model": "hrapp.employeecomputer",
+    "pk": 2,
+    "fields": {
+      "computer_id": 2,
+      "employee_id": 2,
+      "assign_date": "2010-07-05",
+      "unassign_date": null
+    }
+  },
+  {
+    "model": "hrapp.employeecomputer",
+    "pk": 3,
+    "fields": {
+      "computer_id": 3,
+      "employee_id": 3,
+      "assign_date": "2015-07-05",
+      "unassign_date": null
+    }
+  },
+  {
+    "model": "hrapp.employeecomputer",
+    "pk": 4,
+    "fields": {
+      "computer_id": 4,
+      "employee_id": 4,
+      "assign_date": "2020-07-05",
+      "unassign_date": null
     }
   }
 ]

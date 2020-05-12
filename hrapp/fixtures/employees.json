@@ -7,7 +7,7 @@
             "last_name": "Williams",
             "start_date": "2008-07-05",
             "is_supervisor": true,
-            "department": 1
+            "department_id": 1
         }
     },
     {
@@ -18,7 +18,7 @@
             "last_name": "Sanz",
             "start_date": "2008-06-12",
             "is_supervisor": false,
-            "department": 2
+            "department_id": 2
         }
     },
     {
@@ -29,7 +29,7 @@
             "last_name": "Farley",
             "start_date": "2010-03-15",
             "is_supervisor": false,
-            "department": 3
+            "department_id": 3
         }
     },
     {
@@ -40,7 +40,7 @@
             "last_name": "Meadows",
             "start_date": "2015-05-26",
             "is_supervisor": false,
-            "department": 4
+            "department_id": 4
         }
     },
     {
@@ -51,7 +51,7 @@
             "last_name": "Hartman",
             "start_date": "2012-03-15",
             "is_supervisor": false,
-            "department": 2
+            "department_id": 2
         }
     }
 ]
