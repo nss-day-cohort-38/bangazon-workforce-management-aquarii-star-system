@@ -3,7 +3,7 @@ from datetime import datetime
 from django.urls import reverse
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from hrapp.models import TrainingProgram
+from hrapp.models import TrainingProgram, Employee
 from hrapp.models import model_factory
 from ..connection import Connection
 
@@ -12,7 +12,6 @@ def get_training_program(training_program_id):
         conn.row_factory = model_factory(TrainingProgram)
         db_cursor = conn.cursor()
 
-        # TODO: expand with users signed up, etc.
         db_cursor.execute("""
         SELECT
             tp.id,
@@ -26,6 +25,25 @@ def get_training_program(training_program_id):
         """, (training_program_id,))
 
         return db_cursor.fetchone()
+
+def get_employees_in_program(training_program_id):
+    with sqlite3.connect(Connection.db_path) as conn:
+        conn.row_factory = model_factory(Employee)
+        db_cursor = conn.cursor()
+
+        # TODO: expand with users signed up, etc.
+        db_cursor.execute("""
+        SELECT
+            e.id AS employee_id,
+            e.first_name,
+            e.last_name
+        FROM hrapp_employee e
+        JOIN hrapp_employeetrainingprogram et ON e.id = et.employee_id
+        WHERE et.id = ?;
+        """, (training_program_id,))
+
+        return db_cursor.fetchone()
+
 
 def isPast(date_string):
     
