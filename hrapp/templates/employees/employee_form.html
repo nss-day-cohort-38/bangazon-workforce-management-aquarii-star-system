@@ -2,7 +2,6 @@
 
 {% block content %}
 
-
     {% if employee.id is None %}
         <h1>Add Employee</h1>
     {% else %}
@@ -37,17 +36,18 @@
             <label for="department">Department: </label>
             <select id="department" type="text" name="department">
                 {% for department in all_departments %}
-                <option {% if department.id == employee.department_id %}selected{% endif %} value="{{ department.id }}">
+                <option {% if department.id == employee.department.id %}selected{% endif %} value="{{ department.id }}">
                     {{ department.dept_name }}</option>
                 {% endfor %}
             </select>
         </fieldset>
+
         {% if employee.id is not None %}
         <fieldset>
             <label for="computer">Computer: </label>
             <select id="computer" type="text" name="computer">
                 {% for computer in all_computers %}
-                <option {% if computer.id == employeecomputer.computer_id %}selected{% endif %} value="{{ computer.id }}">
+                <option {% if computer.id == employee.computer.id %}selected{% endif %} value="{{ computer.id }}">
                     {{ computer.make }}</option>
                 {% endfor %}
             </select>
@@ -61,4 +61,4 @@
             <input type="submit" value="Create" />
         {% endif %}
     
-{% endblock content %}
+{% endblock %}
