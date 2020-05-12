@@ -45,9 +45,7 @@ def get_employee(employee_id):
             d.dept_name,
             d.id AS departmentID,
             c.make AS computer,
-            c.id AS computerID,
-            ec.id as ecID,
-            ec.computer_id as ecCID
+            c.id AS computerID
         FROM hrapp_employee e
         JOIN hrapp_department d ON d.id = e.department_id
         JOIN hrapp_employeecomputer ec ON e.id = ec.employee_id
