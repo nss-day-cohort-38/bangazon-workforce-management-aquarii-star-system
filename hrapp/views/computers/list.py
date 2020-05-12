@@ -55,10 +55,11 @@ def computer_list(request):
             db_cursor.execute("""
                 INSERT INTO hrapp_employeecomputer
                     (
+                        computer_id,
                         employee_id
                     )
-                VALUES (?)
+                VALUES (?, ?)
             """, 
-            (form_data['employee_id']))
+            (form_data['computer_id'], form_data['employee_id']))
 
         return redirect(reverse('hrapp:computers'))

@@ -21,7 +21,7 @@ def get_employee_computer(computer_id):
         FROM hrapp_computer c 
         JOIN hrapp_employeecomputer ec
         JOIN hrapp_employee e
-        WHERE ec.computer_id = c.id;
+        WHERE c.id = ?;
             ''', (computer_id,))
          
         return db_cursor.fetchall()
@@ -44,7 +44,8 @@ def get_computer(computer_id):
         """, (computer_id,))
         
         return db_cursor.fetchone()
-# Write function to determine whether can be deleted is true or false based on connected to employee
+
+        
 def computer_details(request, computer_id):
     if request.method == 'GET':
         computer = get_computer(computer_id)

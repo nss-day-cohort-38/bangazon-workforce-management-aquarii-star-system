@@ -5,7 +5,7 @@ from hrapp.models.modelfactory import model_factory
 from hrapp.views.connection import Connection
 from hrapp.models import Employee, Computer
 
-def get_employee_computer(computer_id):
+def get_employee_computer():
     with sqlite3.connect(Connection.db_path) as conn:
         conn.row_factory = model_factory(Computer)
         db_cursor = conn.cursor()
@@ -22,7 +22,7 @@ def get_employee_computer(computer_id):
         JOIN hrapp_employeecomputer ec
         JOIN hrapp_employee e
         WHERE ec.computer_id = c.id;
-            ''', (computer_id,))
+            ''')
          
         return db_cursor.fetchall()
 
