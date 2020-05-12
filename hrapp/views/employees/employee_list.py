@@ -20,7 +20,7 @@ def employee_list(request):
                 d.dept_name
             FROM
                 hrapp_employee e
-                JOIN hrapp_department d ON d.id = e.department_id
+                LEFT JOIN hrapp_department d ON d.id = e.department_id
             """)
 
             all_employees = []
