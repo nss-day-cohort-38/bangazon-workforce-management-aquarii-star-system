@@ -14,7 +14,7 @@
     "pk": 2,
     "fields": {
       "manufacturer": "IBM",
-      "make": "IBM XT",
+      "make": "XT",
       "purchase_date": "1987-03-09",
       "decommission_date": "1990-04-18"
     }
