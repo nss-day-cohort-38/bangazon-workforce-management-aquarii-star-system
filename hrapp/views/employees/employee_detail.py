@@ -119,7 +119,19 @@ def employee_detail(request, employee_id):
                 (
                     form_data['last_name'], form_data["department"], employee_id,
                 ))
+            
+            if employee.computer is not None:
 
+                db_cursor.execute("""
+                UPDATE hrapp_employeecomputer
+                SET computer_id = ?
+                WHERE employee_id = ?
+                """,
+                (
+                    form_data['computer'], employee_id,
+                ))
+
+            else:
                 db_cursor.execute("""
                 UPDATE hrapp_employeecomputer
                 SET computer_id = ?
