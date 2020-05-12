@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from hrapp.models import Employee, Computer, TrainingProgram, Department
 from ..connection import Connection
 
+
 def create_employee(cursor, row):
     _row = sqlite3.Row(cursor, row)
 
@@ -92,8 +93,40 @@ def get_employee(employee_id):
 
     return employee_with_programs[employee_id]
 
+
 def employee_detail(request, employee_id):
     if request.method == 'GET':
         employee = get_employee(employee_id)
         template_name = 'employees/employee_details.html'
         return render(request, template_name, {'employee': employee})
+
+    elif request.method == 'POST':
+        form_data = request.POST
+
+        if (
+            "actual_method" in form_data
+            and form_data["actual_method"] == "PUT"
+        ):
+            with sqlite3.connect(Connection.db_path) as conn:
+                db_cursor = conn.cursor()
+
+                db_cursor.execute("""
+                UPDATE hrapp_employee
+                SET last_name = ?,
+                    department_id = ?
+                WHERE id = ?
+                """,
+                (
+                    form_data['last_name'], form_data["department"], employee_id,
+                ))
+
+                db_cursor.execute("""
+                UPDATE hrapp_employeecomputer
+                SET computer_id = ?
+                WHERE employee_id = ?
+                """,
+                (
+                    form_data['computer'], employee_id,
+                ))
+
+            return redirect(reverse('hrapp:employees'))
