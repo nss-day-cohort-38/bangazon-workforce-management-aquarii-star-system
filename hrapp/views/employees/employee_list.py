@@ -1,6 +1,6 @@
 import sqlite3
 from django.shortcuts import render
-from hrapp.models import Employee
+from hrapp.models import Employee, Department
 from ..connection import Connection
 
 def employee_list(request):
@@ -20,7 +20,7 @@ def employee_list(request):
                 d.dept_name
             FROM
                 hrapp_employee e
-                JOIN hrapp_department d ON d.id = e.department_id
+                LEFT JOIN hrapp_department d ON d.id = e.department_id
             """)
 
             all_employees = []
@@ -33,8 +33,11 @@ def employee_list(request):
                 employee.last_name = row['last_name']
                 employee.start_date = row['start_date']
                 employee.is_supervisor = row['is_supervisor']
-                ## Changed from employee.department
-                employee.dept_name = row['dept_name']
+
+                department = Department()
+                department.dept_name = row['dept_name']
+
+                employee.department = department
 
                 all_employees.append(employee)
 
