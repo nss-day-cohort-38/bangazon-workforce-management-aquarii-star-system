@@ -18,6 +18,14 @@
           <label for="purchase_date">Purchase Date: </label>
           <input id="purchase_date" type="date" name="purchase_date">
       </fieldset>
+      <fieldset>
+        <label for="employee">Assign to employee: </label>
+        <select id="employee" type="text" name="employee">
+              {% for employee in employees %}
+                  <option value="{{ employee.id }}">{{ employee.first_name }} {{ employee.last_name }}</option>
+              {% endfor %}
+        </select>
+    </fieldset>
       <input type="submit" value="Add It" />
     </form>
     {% endblock %}
