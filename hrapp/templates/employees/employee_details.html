@@ -1,24 +1,27 @@
 {% extends 'shared/base.html' %} {% block content %}
 <section id="employee-details">
-  <h1>{{ employee }}</h1>
+  <h1>{{ employee.first_name }} {{ employee.last_name }}</h1>
 
-  {% if employee.department.name is not None %}
-      <div>Department: {{ employee.department.name }}</div>
-  {% endif %}
-  {% if employee.computer.name is not None %}
-      <div>Current Computer: {{ employee.computer.name }}</div>
-  {% endif %}
-  <div>Training Programs: </div>
+  <div>Department: {{ employee.department.name }}</div>
+  <div>
+    Current Computer: {{ employee.computer.manufacturer }} {{ employee.computer.make }}
+  </div>
+  <div>Training Programs:</div>
+  <ul>
+    {% if employee.training_programs %}
+      {% for training_program in employee.training_programs %}
+        <li>{{ training_program.title }}</li>
+      {% endfor %}
+    {% endif %}
+  </ul>
+</section>
 
-  {% if employee.computer.name is not None %}
+  {% if employee.computer.make is not None %}
     <form action="{% url 'hrapp:employee_edit_form' employee.id %}" method="GET">
         {% csrf_token %}
         <button>Edit</button>
     </form>
   {% endif %}
 
-</section>
-
-<section id="employee-actions" style="display: flex;">
-</section>
+<section id="employee-actions" style="display: flex;"></section>
 {% endblock %}
