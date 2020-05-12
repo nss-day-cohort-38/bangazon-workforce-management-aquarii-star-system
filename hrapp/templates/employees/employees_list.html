@@ -7,7 +7,7 @@
 {% for employee in employees %}
     <li>
         <a class="employee__name" href="{% url 'hrapp:employee' employee.id %}">
-            {{ employee }} ({{ employee.department}})
+            {{ employee }} ({{ employee.dept_name}})
         </a>
     </li>
 {% endfor %}
