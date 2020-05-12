@@ -3,7 +3,8 @@
     "model": "hrapp.computer",
     "pk": 1,
     "fields": {
-      "make": "Lenovo NoGo 2000",
+      "manufacturer": "Lenovo",
+      "make": "NoGo 2000",
       "purchase_date": "2012-03-09",
       "decommission_date": "2014-04-05"
     }
@@ -12,7 +13,8 @@
     "model": "hrapp.computer",
     "pk": 2,
     "fields": {
-      "make": "IBM XT",
+      "manufacturer": "IBM",
+      "make": "XT",
       "purchase_date": "1987-03-09",
       "decommission_date": "1990-04-18"
     }
@@ -21,6 +23,7 @@
     "model": "hrapp.computer",
     "pk": 3,
     "fields": {
+      "manufacturer": "Apple",
       "make": "Apple MacBook Schmo",
       "purchase_date": "2012-10-20",
       "decommission_date": "2014-04-05"
@@ -30,6 +33,7 @@
     "model": "hrapp.computer",
     "pk": 4,
     "fields": {
+      "manufacturer": "Apple",
       "make": "Apple MacBook Glow",
       "purchase_date": "2014-10-20",
       "decommission_date": null
