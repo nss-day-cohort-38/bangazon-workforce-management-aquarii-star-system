@@ -1,0 +1,35 @@
+[
+  {
+    "model": "hrapp.trainingprogram",
+    "pk": 1,
+    "fields": {
+      "title": "SQL for Beginners",
+      "description": "In this course, you'll learn how to communicate with relational databases through SQL.",
+      "start_date": "2012-10-20",
+      "end_date": "2014-04-05",
+      "capacity": 1
+    }
+  },
+  {
+    "model": "hrapp.trainingprogram",
+    "pk": 2,
+    "fields": {
+      "title": "Dinsoaurs 101",
+      "description": "DINOSAURS 101 is your one-stop source for everything you should know about dinosaurs and paleontology.",
+      "start_date": "2020-10-05",
+      "end_date": "2020-10-20",
+      "capacity": 1
+    }
+  },
+  {
+    "model": "hrapp.trainingprogram",
+    "pk": 3,
+    "fields": {
+      "title": "Space 101",
+      "description": "NASA's real-time science encyclopedia of deep space exploration.",
+      "start_date": "2020-10-05",
+      "end_date": "2020-10-20",
+      "capacity": 1
+    }
+  }
+]
