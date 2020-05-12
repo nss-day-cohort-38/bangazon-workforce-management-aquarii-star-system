@@ -3,21 +3,18 @@
   <h1>{{ employee.first_name }} {{ employee.last_name }}</h1>
 
   <div>Department: {{ employee.department.name }}</div>
-  <div>Current Computer: {{ employee.computer_manufacturer }} {{ employee.computer_make }}</div>
-  <div>Training Programs: </div>
-    <ul>
-      {% if employee.training_programs|length > 0 %}
-        {% for training_program in employee.training_programs %}
-          <li>
-            {{ training_program.title }}
-          </li>
-        {% endfor %}
-      {% else %}
-      <li>No training programs attended</li>
-      {% endif %}
-    </ul>
+  <div>
+    Current Computer: {{ employee.computer.manufacturer }} {{ employee.computer.make }}
+  </div>
+  <div>Training Programs:</div>
+  <ul>
+    {% if employee.training_programs %}
+      {% for training_program in employee.training_programs %}
+        <li>{{ training_program.title }}</li>
+      {% endfor %}
+    {% endif %}
+  </ul>
 </section>
 
-<section id="employee-actions" style="display: flex;">
-</section>
+<section id="employee-actions" style="display: flex;"></section>
 {% endblock %}

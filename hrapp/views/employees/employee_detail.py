@@ -13,8 +13,6 @@ def create_employee(cursor, row):
     employee.first_name = _row["first_name"]
     employee.last_name = _row["last_name"]
     employee.start_date = _row["start_date"]
-    employee.computer_manufacturer = _row["computer_manufacturer"]
-    employee.computer_make = _row["computer_make"]
 
     department = Department()
     department.id = _row["dept_id"]
@@ -70,13 +68,13 @@ def get_employee(employee_id):
             tp.capacity AS training_program_capacity
         FROM
             hrapp_employee e
-            JOIN hrapp_department d ON d.id = e.department_id
-            JOIN hrapp_employeecomputer ec ON e.id = ec.employee_id
-            JOIN hrapp_computer c ON ec.computer_id = c.id
-            JOIN hrapp_employeetrainingprogram etp ON etp.employee_id = e.id
-            JOIN hrapp_trainingprogram tp ON etp.training_program_id = tp.id
+            LEFT JOIN hrapp_department d ON d.id = e.department_id
+            LEFT JOIN hrapp_employeecomputer ec ON e.id = ec.employee_id
+            LEFT JOIN hrapp_computer c ON ec.computer_id = c.id
+            LEFT JOIN hrapp_employeetrainingprogram etp ON etp.employee_id = e.id
+            LEFT JOIN hrapp_trainingprogram tp ON etp.training_program_id = tp.id
         WHERE
-            e.id = ?;
+            e.id = ?
         """, (employee_id,))
 
     employee_data = db_cursor.fetchall()
