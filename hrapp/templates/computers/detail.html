@@ -3,6 +3,7 @@
 
 {% block content %}
 <h1>{{ computer.manufacturer }} {{ computer.make }} was purchased on {{ computer.purchase_date }}</h1>
+<h2>This computer is assigned to {{ employee_computer.first_name }} {{ employee_computer.last_name }}</h2>
 {% if computer.decommission_date %}
 <h2>This computer was decommissioned on {{ computer.decommission_date }}</h2>
 {% endif %}

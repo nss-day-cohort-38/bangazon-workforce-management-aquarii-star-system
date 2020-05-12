@@ -12,12 +12,16 @@ def get_employee_computer(computer_id):
         
         db_cursor.execute('''
         SELECT 
-            c.id,
+            c.id AS computer_id,
             c.make,
-            c.manufacturer
+            c.manufacturer,
+            ec.employee_id,
+            e.first_name,
+            e.last_name
         FROM hrapp_computer c 
-        LEFT JOIN hrapp_employeecomputer e
-        WHERE e.computer_id = ?;
+        JOIN hrapp_employeecomputer ec
+        JOIN hrapp_employee e
+        WHERE ec.computer_id = c.id;
             ''', (computer_id,))
          
         return db_cursor.fetchall()
@@ -54,6 +58,7 @@ def computer_details(request, computer_id):
         template = 'computers/detail.html'
         context = {
             'computer': computer,
+            'employee_computer': employee_computer,
             'canDelete': canDelete}
         
         return render(request, template, context)
