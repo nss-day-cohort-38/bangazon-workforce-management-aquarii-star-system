@@ -1,0 +1,10 @@
+[
+  {
+    "model": "hrapp.employeecomputer",
+    "pk": 1,
+    "fields": {
+      "computer_id": 1,
+      "employee_id": 1
+    }
+  }
+]
