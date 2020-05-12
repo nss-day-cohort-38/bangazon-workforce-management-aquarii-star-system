@@ -3,13 +3,12 @@
 {% block content %}
 
 <h1>{{ department.dept_name }}</h1>
-<div>Budget: ${{ department.budget }}</div>
 <div>Employees:
-    {% comment %} <ul>
+    <ul>
         {% for employee in department_employees %}
             <li>{{ employee.first_name }} {{ employee.last_name }}</li>
         {% endfor %}
-    </ul> {% endcomment %}
+    </ul>
 </div>
 
 {% endblock %}
