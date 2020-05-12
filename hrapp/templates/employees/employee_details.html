@@ -16,12 +16,11 @@
   </ul>
 </section>
 
-  {% if employee.computer.make is not None %}
-    <form action="{% url 'hrapp:employee_edit_form' employee.id %}" method="GET">
+
+  <form action="{% url 'hrapp:employee_edit_form' employee.id %}" method="GET">
         {% csrf_token %}
         <button>Edit</button>
-    </form>
-  {% endif %}
+  </form>
 
 <section id="employee-actions" style="display: flex;"></section>
 {% endblock %}
