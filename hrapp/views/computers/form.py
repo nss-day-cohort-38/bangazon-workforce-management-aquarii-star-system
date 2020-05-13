@@ -33,6 +33,7 @@ def get_employees():
 
         db_cursor.execute("""
            SELECT 
+                e.id,
                 e.first_name,
                 e.last_name
             FROM hrapp_employee e;               
