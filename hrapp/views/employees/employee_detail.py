@@ -124,7 +124,7 @@ def get_employee_computer(employee_id):
         WHERE
             e.id = ?
         ORDER BY
-	        ec.assign_date;
+	        ec.assign_date DESC;
         """, (employee_id, ))
 
         data = db_cursor.fetchone()
