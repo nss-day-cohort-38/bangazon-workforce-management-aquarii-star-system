@@ -21,7 +21,11 @@
             <li class="navList__route"><a href="{% url 'hrapp:departments' %}">Departments</a></li>
             <li class="navList__route"><a href="{% url 'hrapp:computers' %}">Computers</a></li>
             <li class="navList__route"><a href="{% url 'hrapp:training_programs' %}">Training Programs</a></li>
-            <li class="navList__route"><a href="{% url 'hrapp:logout' %}">Logout</a></li>
+            {% if request.user.is_authenticated %}
+                <li class="navList__route"><a href="{% url 'hrapp:logout' %}">Logout</a></li>
+            {% else %}
+                <li class="navList__route"><a href="{% url 'hrapp:login' %}">Login</a></li>
+            {% endif %}
         </ol>
     </nav>
 

@@ -2,12 +2,14 @@ from django.urls import path
 from django.conf.urls import include
 from hrapp.views import *
 from hrapp.models import *
+from django.contrib.auth import login
 
 app_name = 'hrapp'
 urlpatterns = [
     path('', home, name='home'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('logout/', logout_user, name='logout'),
+    path('accounts/login', login, name='login'),
     
     path('employees/', employee_list, name='employees'),
     path('employees/<int:employee_id>/', employee_detail, name="employee"),
