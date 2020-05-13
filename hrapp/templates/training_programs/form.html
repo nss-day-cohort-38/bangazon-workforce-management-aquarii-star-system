@@ -4,7 +4,7 @@
     <h1>Training Program Form</h1>
 
     {% if training_program.id is not None %}
-        <form action="{% url 'hrapp:training_programs' training_program.id %}" method="post">
+        <form action="{% url 'hrapp:training_program' training_program.id %}" method="post">
     {% else %}
         <form action="{% url 'hrapp:training_programs' %}" method="post">
     {% endif %}

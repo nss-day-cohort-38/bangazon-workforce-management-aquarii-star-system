@@ -18,12 +18,13 @@
         <input type="hidden" name="actual_method" value="DELETE">
         <button>Delete</button>
       </form>
-      <form action="{% url 'hrapp:training_program' training_program.id %}" method="POST">
+      <form action="{% url 'hrapp:training_program_edit_form' training_program.id %}" method="GET">
         {% csrf_token %}
-        <input type="hidden" name="actual_method" value="DELETE">
         <button>Edit</button>
       </form>
     </section>
+  {% else %}
+    <p>Note: *events in the past cannot be edited or deleted*<p>
   {% endif %}
 
   <section class="employees">
