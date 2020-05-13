@@ -9,9 +9,9 @@
     {% for computer in all_computers %}
         <li>
           <a href="{% url 'hrapp:computer' computer.id %}">
-            {{ computer.manufacturer }}
-            {{ computer.make }}
-        </li>
+            {{ computer.manufacturer }} {{ computer.make }}
+            is assigned to {{computer.first_name}} {{computer.last_name}}
+          </li>
       </a>
         {% empty %}
         <p>No computers have been added yet</p>

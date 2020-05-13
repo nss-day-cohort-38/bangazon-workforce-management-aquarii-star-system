@@ -17,16 +17,25 @@ def computer_list(request):
                 c.id,
                 c.make,
                 c.purchase_date,
+                c.manufacturer,
                 c.decommission_date,
-                c.manufacturer
-            FROM hrapp_computer c
+                ec.employee_id,
+                ec.computer_id,
+                e.id,
+                e.first_name,
+                e.last_name
+            FROM hrapp_computer c 
+            JOIN hrapp_employee e
+            JOIN hrapp_employeecomputer ec ON e.id = ec.employee_id
+            WHERE ec.computer_id = c.id;
             ''')
             
             all_computers = db_cursor.fetchall()
+            all_computer_keys = list(dict.fromkeys(all_computers))
             
         template = 'computers/list.html'
         context = {
-            'all_computers': all_computers
+            'all_computers': all_computer_keys
         }
                 
         return render(request, template, context)

@@ -7,12 +7,12 @@
     <form action="{% url 'hrapp:computers' %}" method="post">
       {% csrf_token %}
       <fieldset>
-          <label for="make">Make: </label>
-          <input id="make" type="text" name="make">
-      </fieldset>
-      <fieldset>
           <label for="manufacturer">Manufacturer: </label>
           <input id="manufacturer" type="text" name="manufacturer">
+      </fieldset>
+      <fieldset>
+          <label for="make">Make: </label>
+          <input id="make" type="text" name="make">
       </fieldset>
       <fieldset>
           <label for="purchase_date">Purchase Date: </label>
