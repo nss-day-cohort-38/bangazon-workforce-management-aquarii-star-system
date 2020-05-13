@@ -5,13 +5,21 @@
       {% block content %}
     <h1>Computers</h1>
     <a href="{% url 'hrapp:computer_form' %}">Add a new computer</a>
+    <h3>All computers:</h3>
     <ol>
-    {% for computer in all_computers %}
+      {% for computer in all_computers %}
+      <li><a href="{% url 'hrapp:computer' computer.id %}">
+      {{ computer.manufacturer }} {{ computer.make }}</li></a>
+      {% endfor %}
+    </ol>
+    <h3>Computers assigned to employees:</h3>
+    <ol>
+    {% for computer in all_computer_keys %}
         <li>
           <a href="{% url 'hrapp:computer' computer.id %}">
-            {{ computer.manufacturer }}
-            {{ computer.make }}
-        </li>
+            {{ computer.manufacturer }} {{ computer.make }}
+            is assigned to {{computer.first_name}} {{computer.last_name}}
+          </li>
       </a>
         {% empty %}
         <p>No computers have been added yet</p>
