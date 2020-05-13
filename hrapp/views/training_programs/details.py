@@ -45,7 +45,7 @@ def get_employees_in_program(training_program_id):
         return db_cursor.fetchall()
 
 
-def isPast(date_string):
+def is_past(date_string):
     
     date_object = datetime.strptime(date_string, '%Y-%m-%d')
 
@@ -59,25 +59,23 @@ def training_program_details(request, training_program_id):
     if request.method == 'GET':
         training_program = get_training_program(training_program_id)
         employees_in_program = get_employees_in_program(training_program_id)
-        # This data set can only be deleted under certain circumstances
+        # This data set can only be deleted/edited        
+        # based on whether it is an event in the past or future 
         # so we're deciding that at this point, still in python
         # and passing it through context below
-        canDelete = False
+        past_event = False
         
         # if the end date is in the past, we can delete this training_program
-        if isPast(training_program.end_date):
-            canDelete = True
+        if is_past(training_program.end_date):
+            past_event = True
 
         template = 'training_programs/detail.html'
         context = {
             'training_program': training_program,
             'employees_in_program': employees_in_program,
-            'canDelete': canDelete
+            'past_event': past_event
         }
 
-        # passing through the candelete variable here
-        # if it's true, then we render the delete button
-        # if it's false, we don't
         return render(request, template, context)
     
     # Check if its a POST (edit or delete)
