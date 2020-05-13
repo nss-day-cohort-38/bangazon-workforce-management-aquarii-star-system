@@ -11,14 +11,33 @@
     </div>
   </section>
 
-  {% if canDelete %}
+  {% if past_event %}
+      <p>Note: *events in the past cannot be edited or deleted*<p>
+  {% else %}
     <section class="infoDialog" id="training-actions">
       <form action="{% url 'hrapp:training_program' training_program.id %}" method="POST">
-          {% csrf_token %}
-          <input type="hidden" name="actual_method" value="DELETE">
-          <button>Delete</button>
+        {% csrf_token %}
+        <input type="hidden" name="actual_method" value="DELETE">
+        <button>Delete</button>
+      </form>
+      <form action="{% url 'hrapp:training_program_edit_form' training_program.id %}" method="GET">
+        {% csrf_token %}
+        <button>Edit</button>
       </form>
     </section>
   {% endif %}
+
+  <section class="employees">
+    <h2>Employees in Program:</h2>
+    <ol class="employees_in_program">
+      {% for employee in employees_in_program %}
+        <li class="employee">
+          <a href="{% url 'hrapp:employee' employee.id %}">
+            {{ employee.first_name }} {{ employee.last_name }}
+          </a>
+        </li>
+      {% endfor %}
+    </ol>
+  </section>
 
 {% endblock %}
