@@ -1,6 +1,15 @@
+# Bangazon Workforce Mangement - Aquarii Star System
+
+## A group project by:
+
+- [Andrew Green](https://github.com/agreen2601)
+- [Jack Parsons](https://github.com/jcksnparsons)
+- [Alyssa Nycum](https://github.com/alyssanycum)
+- [Keith Potempa](https://github.com/keithrpotempa)
+
 ## Steps to get your project started:
 
-* Clone down your team's repo and `cd` into it
+* `git clone git@github.com:nss-day-cohort-38/bangazon-workforce-management-aquarii-star-system.git && cd $_`
 
 * Create your OSX/Linux OS virtual environment in Terminal:
 
@@ -25,20 +34,24 @@
 
   * `python manage.py createsuperuser`
 
-* Populate your database with initial data from fixtures files: (_NOTE: every time you run this it will remove existing data and repopulate the tables_)
+* Populate your database with initial data from fixtures files:
 
-  * `python manage.py loaddata computers`
-  * `python manage.py loaddata users`
+  1. `python manage.py loaddata departments`
+  1. `python manage.py loaddata employees`
+  1. `python manage.py loaddata computers`
+  1. `python manage.py loaddata training_programs`
+  1. `python manage.py loaddata employee_computers`
+  1. `python manage.py loaddata employee_training_programs`
 
-* Fire up your dev server and get to work!
+* Fire up your dev server!
 
   * `python manage.py runserver`
 
 
 ## Official Bangazon LLC ERD
 
-Our team of database developers and administrators developed this ERD for you to reference when creating your models.
+This ERD was supplied for us to reference when creating our models.
 
 https://dbdiagram.io/d/5eb4d41339d18f5553fedf9e
 
-Not that the column names do not conform to the Python community standards (PEP) for naming conventions. Make sure your models use snake case.
+Note that the column names do not conform to the Python community standards (PEP) for naming conventions. Our models use snake_case.
