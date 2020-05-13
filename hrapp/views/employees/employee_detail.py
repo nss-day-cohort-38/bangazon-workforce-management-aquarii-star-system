@@ -123,20 +123,21 @@ def employee_detail(request, employee_id):
                     form_data['last_name'], form_data["department"], employee_id,
                 ))
 
-            # if employee.computer.make is not None:
-            #     db_cursor.execute("""
-            #     UPDATE hrapp_employeecomputer
-            #     SET computer_id = ?
-            #     WHERE employee_id = ?
-            #     """,
-            #     (
-            #         form_data['computer'], employee_id,
-            #     ))
+            if employee.computer.make is not None:
+                db_cursor.execute("""
+                UPDATE hrapp_employeecomputer
+                SET computer_id = ?
+                WHERE employee_id = ?
+                """,
+                (
+                    form_data['computer'], employee_id,
+                ))
 
-            # else:
+            else:
                 db_cursor.execute("""
                 INSERT INTO hrapp_employeecomputer
                 (employee_id, computer_id, assign_date, unassign_date)
+                VALUES (?, ?, ?, ?)
                 """,
                 (
                     employee_id, form_data['computer'], 1, 1

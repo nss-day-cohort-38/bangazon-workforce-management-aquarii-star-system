@@ -7,12 +7,6 @@
     {% else %}
         <h1>Update Employee Info</h1>
     {% endif %}
-    
-    {% if employee.computer.make is not None %}
-        <h2>{{employee.computer.make}}</h2>
-    {% else %}
-        <h2>No computer</h2>
-    {% endif %}
 
     {% if employee.id is not None %}
         <form action="{% url 'hrapp:employee' employee.id %}" method="post">
