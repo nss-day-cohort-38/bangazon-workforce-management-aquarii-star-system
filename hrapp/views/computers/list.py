@@ -12,20 +12,38 @@ def computer_list(request):
             conn.row_factory = model_factory(Computer)
             db_cursor = conn.cursor()
             
+            db_cursor.execute(''' 
+            SELECT *
+            FROM hrapp_computer;
+            ''')
+            
+            all_computers = db_cursor.fetchall()
+            
+            
             db_cursor.execute('''
             SELECT
                 c.id,
                 c.make,
                 c.purchase_date,
+                c.manufacturer,
                 c.decommission_date,
-                c.manufacturer
-            FROM hrapp_computer c
+                ec.employee_id,
+                ec.computer_id,
+                e.id,
+                e.first_name,
+                e.last_name
+            FROM hrapp_computer c 
+            JOIN hrapp_employee e
+            JOIN hrapp_employeecomputer ec ON e.id = ec.employee_id
+            WHERE ec.computer_id = c.id;
             ''')
             
-            all_computers = db_cursor.fetchall()
+            employee_computer_list = db_cursor.fetchall()
+            all_computer_keys = list(dict.fromkeys(employee_computer_list))
             
         template = 'computers/list.html'
         context = {
+            'all_computer_keys': all_computer_keys,
             'all_computers': all_computers
         }
                 
