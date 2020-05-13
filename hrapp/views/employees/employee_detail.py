@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from hrapp.models import Employee, Computer, TrainingProgram, Department
 from ..connection import Connection
+from datetime import date
 
 
 def create_employee(cursor, row):
@@ -123,7 +124,7 @@ def employee_detail(request, employee_id):
                     form_data['last_name'], form_data["department"], employee_id,
                 ))
 
-            if employee.computer.make is not None:
+            # if is not None:
                 db_cursor.execute("""
                 UPDATE hrapp_employeecomputer
                 SET computer_id = ?
@@ -133,14 +134,14 @@ def employee_detail(request, employee_id):
                     form_data['computer'], employee_id,
                 ))
 
-            else:
-                db_cursor.execute("""
-                INSERT INTO hrapp_employeecomputer
-                (employee_id, computer_id, assign_date, unassign_date)
-                VALUES (?, ?, ?, ?)
-                """,
-                (
-                    employee_id, form_data['computer'], 1, 1
-                ))
+            # else:
+            #     db_cursor.execute("""
+            #     INSERT INTO hrapp_employeecomputer
+            #     (employee_id, computer_id, assign_date, unassign_date)
+            #     VALUES (?, ?, ?, ?)
+            #     """,
+            #     (
+            #         employee_id, form_data['computer'], date.today(), None
+            #     ))
 
             return redirect(reverse('hrapp:employees'))

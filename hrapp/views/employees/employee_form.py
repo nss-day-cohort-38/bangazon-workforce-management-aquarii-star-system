@@ -1,7 +1,7 @@
 import sqlite3
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from hrapp.models import Employee, model_factory, Department
+from hrapp.models import Employee, model_factory, Department, Computer
 from ..connection import Connection
 from .employee_detail import get_employee
 
@@ -20,7 +20,7 @@ def get_departments():
 
 def get_computers():
     with sqlite3.connect(Connection.db_path) as conn:
-        conn.row_factory = model_factory(Department)
+        conn.row_factory = model_factory(Computer)
         db_cursor = conn.cursor()
         db_cursor.execute("""
         select
