@@ -1,13 +1,55 @@
-# Bangazon Workforce Mangement - Aquarii Star System
+# Bangazon Workforce Mangement HR Application - Aquarii Star System
 
-## A group project by:
+## A group project by
 
 - [Andrew Green](https://github.com/agreen2601)
 - [Jack Parsons](https://github.com/jcksnparsons)
 - [Alyssa Nycum](https://github.com/alyssanycum)
 - [Keith Potempa](https://github.com/keithrpotempa)
 
-## Steps to get your project started:
+## Technologies Used
+
+Python
+- querying data from SQLite
+- converting that data into class instances
+- rendering those classes with Django
+- defined and importing packages
+
+Django
+- views, models, templates
+- routing with urls.py
+- fixtures, migrations
+- utilizing built-in user authentication
+
+## Features
+
+The Bangazon HR App allows a user to interact with the followig components:
+
+### Employees 
+- List, detail, and form views/templates
+- List view shows all employees and the departments associated with them
+- Detail view shows the computer and training programs associated with that employee
+- full CRUD functionality
+
+### Departments
+- List, detail, and form views/templates
+- List view displays number of employees associated with each department
+- Detailed view displays a list of the employee names associated with the department
+- create, read, and delete functionality
+
+### Computers
+- List, detail, and form views/templates 
+- List view displays all computers and the employees associated with each computer
+- full CRUD functionality
+- conditional delete behavior (computers can only be deleted if they are not assigned to a user)
+
+### Training Programs 
+- detailed view displays employees associated with them
+- List view sorts the programs into past and upcoming based on today's date 
+- full CRUD functionality
+- conditional delete/edit behavior (past events cannot be modified)
+
+## Installation Steps:
 
 * `git clone git@github.com:nss-day-cohort-38/bangazon-workforce-management-aquarii-star-system.git && cd $_`
 
@@ -46,9 +88,10 @@
 * Fire up your dev server!
 
   * `python manage.py runserver`
+  * Open in browser: `http://127.0.0.1:8000/`
 
 
-## Official Bangazon LLC ERD
+## ERD
 
 This ERD was supplied for us to reference when creating our models.
 
