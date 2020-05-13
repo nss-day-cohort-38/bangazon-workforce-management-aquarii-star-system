@@ -14,13 +14,14 @@ def get_employee_computer(computer_id):
         SELECT 
             c.id AS computer_id,
             c.make,
+            c.purchase_date,
             c.manufacturer,
             ec.employee_id,
             e.first_name,
             e.last_name
-        FROM hrapp_computer c 
-        JOIN hrapp_employeecomputer ec
-        JOIN hrapp_employee e
+        FROM hrapp_employeecomputer ec 
+        JOIN hrapp_computer c ON ec.computer_id = c.id
+        JOIN hrapp_employee e ON ec.employee_id = e.id 
         WHERE c.id = ?;
             ''', (computer_id,))
          
@@ -50,10 +51,10 @@ def computer_details(request, computer_id):
     if request.method == 'GET':
         computer = get_computer(computer_id)
         employee_computer = get_employee_computer(computer_id)
-        canDelete = True
+        canDelete = False
 
         if len(employee_computer) is 0:
-            canDelete = False
+            canDelete = True
         
         template = 'computers/detail.html'
         context = {
