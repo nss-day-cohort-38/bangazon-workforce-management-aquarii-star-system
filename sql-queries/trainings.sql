@@ -1,4 +1,24 @@
 -- SQLite
+-- Practicing get_employees_in_program
+
+
+
+-- STOPPED HERE 9:55
+SELECT
+  et.id
+FROM hrapp_employeetrainingprogram et 
+
+SELECT
+    tp.title,
+    e.id AS employee_id,
+    e.first_name,
+    e.last_name
+FROM hrapp_employeetrainingprogram et
+JOIN hrapp_employee e ON e.id = et.employee_id
+JOIN hrapp_trainingprogram tp ON et.training_program_id = tp.id;
+-- WHERE et.id = 1;
+
+
 -- Seeding Training
 -- DROP TABLE hrapp_training_program;
 
@@ -10,9 +30,11 @@
 --   end_date DATE NOT NULL,
 --   capacity INTEGER NOT NULL
 -- );
-DROP TABLE hrapp_department;
-CREATE TABLE hrapp_department 
-  (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, dept_name, budget);
+
+-- DROP TABLE hrapp_department;
+
+-- CREATE TABLE hrapp_department 
+--   (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, dept_name, budget);
 
 INSERT INTO hrapp_department
 (dept_name, budget)
