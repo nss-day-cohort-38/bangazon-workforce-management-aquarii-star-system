@@ -1,7 +1,8 @@
-# Bangazon Workforce Mangement HR Application - Aquarii Star System
+# Bangazon Workforce Mangement HR Application
 
-## A group project by
+## A group project by:
 
+Aquarii Star System:
 - [Andrew Green](https://github.com/agreen2601)
 - [Jack Parsons](https://github.com/jcksnparsons)
 - [Alyssa Nycum](https://github.com/alyssanycum)
@@ -23,7 +24,7 @@ Django
 
 ## Features
 
-The Bangazon HR App allows a user to interact with the followig components:
+The Bangazon HR App is a full-stack web app that allows a user to interact with the followig components:
 
 ### Employees 
 - List, detail, and form views/templates
