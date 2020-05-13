@@ -21,6 +21,7 @@
       <fieldset>
         <label for="employee">Assign to employee: </label>
         <select id="employee" type="text" name="employee_id">
+          <option value="">Select an employee</option>
               {% for employee in employees %}
                   <option value="{{ employee.id }}">{{ employee.first_name }} {{ employee.last_name }}</option>
               {% endfor %}

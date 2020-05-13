@@ -12,6 +12,14 @@ def computer_list(request):
             conn.row_factory = model_factory(Computer)
             db_cursor = conn.cursor()
             
+            db_cursor.execute(''' 
+            SELECT *
+            FROM hrapp_computer;
+            ''')
+            
+            all_computers = db_cursor.fetchall()
+            
+            
             db_cursor.execute('''
             SELECT
                 c.id,
@@ -30,12 +38,13 @@ def computer_list(request):
             WHERE ec.computer_id = c.id;
             ''')
             
-            all_computers = db_cursor.fetchall()
-            all_computer_keys = list(dict.fromkeys(all_computers))
+            employee_computer_list = db_cursor.fetchall()
+            all_computer_keys = list(dict.fromkeys(employee_computer_list))
             
         template = 'computers/list.html'
         context = {
-            'all_computers': all_computer_keys
+            'all_computer_keys': all_computer_keys,
+            'all_computers': all_computers
         }
                 
         return render(request, template, context)
