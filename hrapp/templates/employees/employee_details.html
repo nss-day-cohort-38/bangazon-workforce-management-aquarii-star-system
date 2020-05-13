@@ -3,9 +3,15 @@
   <h1>{{ employee.first_name }} {{ employee.last_name }}</h1>
 
   <div>Department: {{ employee.department.name }}</div>
+  {% if employee.computer.manufacturer != None and employee.computer.make != None %}
   <div>
     Current Computer: {{ employee.computer.manufacturer }} {{ employee.computer.make }}
   </div>
+  {% else %}
+  <div>
+    No computer assigned
+  </div>
+  {% endif %}
   <div>Training Programs:</div>
   <ul>
     {% if employee.training_programs %}
