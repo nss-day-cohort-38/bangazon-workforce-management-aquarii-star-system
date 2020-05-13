@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from hrapp.models import Employee, model_factory, Department
 from ..connection import Connection
-from .employee_detail import get_employee
+from .employee_detail import get_employee, get_employee_computer
 
 def get_departments():
     with sqlite3.connect(Connection.db_path) as conn:
@@ -47,13 +47,15 @@ def employee_edit_form(request, employee_id):
 
     if request.method == 'GET':
         employee = get_employee(employee_id)
+        computer = get_employee_computer(employee_id)
         departments = get_departments()
         computers = get_computers()
         template = 'employees/employee_form.html'
         context = {
             'employee': employee,
             'all_departments': departments,
-            'all_computers': computers
+            'all_computers': computers,
+            'computer': computer
         }
 
         return render(request, template, context)
