@@ -122,7 +122,9 @@ def get_employee_computer(employee_id):
             JOIN hrapp_employeecomputer ec ON ec.employee_id = e.id
             LEFT JOIN hrapp_computer c ON c.id = ec.computer_id
         WHERE
-            e.id = ?;
+            e.id = ?
+        ORDER BY
+	        ec.assign_date;
         """, (employee_id, ))
 
         data = db_cursor.fetchone()
