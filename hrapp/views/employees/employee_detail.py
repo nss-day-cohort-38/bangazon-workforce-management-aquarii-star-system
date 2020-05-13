@@ -113,7 +113,6 @@ def employee_detail(request, employee_id):
         ):
             with sqlite3.connect(Connection.db_path) as conn:
                 db_cursor = conn.cursor()
-
                 db_cursor.execute("""
                 UPDATE hrapp_employee
                 SET last_name = ?,
@@ -124,24 +123,24 @@ def employee_detail(request, employee_id):
                     form_data['last_name'], form_data["department"], employee_id,
                 ))
 
-            # if is not None:
-                db_cursor.execute("""
-                UPDATE hrapp_employeecomputer
-                SET computer_id = ?
-                WHERE employee_id = ?
-                """,
-                (
-                    form_data['computer'], employee_id,
-                ))
-
-            # else:
-            #     db_cursor.execute("""
-            #     INSERT INTO hrapp_employeecomputer
-            #     (employee_id, computer_id, assign_date, unassign_date)
-            #     VALUES (?, ?, ?, ?)
-            #     """,
-            #     (
-            #         employee_id, form_data['computer'], date.today(), None
-            #     ))
-
-            return redirect(reverse('hrapp:employees'))
+                if employee.computer.make is None:
+                    db_cursor.execute("""
+                    INSERT INTO hrapp_employeecomputer
+                    (employee_id, computer_id, assign_date, unassign_date)
+                    VALUES (?, ?, ?, ?)
+                    """,
+                    (
+                        employee_id, form_data['computer'], date.today(), None
+                    ))
+                
+                else:
+                    db_cursor.execute("""
+                    UPDATE hrapp_employeecomputer
+                    SET computer_id = ?
+                    WHERE employee_id = ?
+                    """,
+                    (
+                        form_data['computer'], employee_id,
+                    ))
+                
+                return redirect(reverse('hrapp:employees'))
