@@ -2,32 +2,29 @@
 <section id="employee-details">
   <h1>{{ employee.first_name }} {{ employee.last_name }}</h1>
 
-  <div>Department: {{ employee.department.name }}</div>
-  {% if employee.computer.manufacturer != None and employee.computer.make != None %}
-  <div>
-    Current Computer: {{ employee.computer.manufacturer }} {{ employee.computer.make }}
-  </div>
-  {% else %}
-  <div>
-    No computer assigned
-  </div>
-  {% endif %}
-  <div>Training Programs:</div>
-  <ul>
-    {% if employee.training_programs %}
-      {% for training_program in employee.training_programs %}
-        <li>{{ training_program.title }}</li>
-      {% endfor %}
+  <div>Department: {{ department.dept_name }}</div>
+    <h2>Computer Assigned</h2>
+    {% if computer %}
+      <h3> {{ computer.manufacturer }} {{ computer.make }}</h3>
+    {% else %}
+      <p> No computer assigned </p>
     {% endif %}
-  </ul>
-</section>
 
-  {% if employee.computer.make is not None %}
-    <form action="{% url 'hrapp:employee_edit_form' employee.id %}" method="GET">
-        {% csrf_token %}
-        <button>Edit</button>
-    </form>
+  <div>Training Programs:</div>
+  {% if training_programs %}
+    <ul>
+      {% for training_program in training_programs %}
+          <li>{{ training_program.title }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p> Not signed up for any programs </p>
   {% endif %}
+</section>
+<form action="{% url 'hrapp:employee_edit_form' employee.id %}" method="GET">
+    {% csrf_token %}
+    <button>Edit</button>
+</form>
 
 <section id="employee-actions" style="display: flex;"></section>
 {% endblock %}
