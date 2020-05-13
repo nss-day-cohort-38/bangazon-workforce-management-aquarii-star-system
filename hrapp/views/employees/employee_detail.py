@@ -86,10 +86,12 @@ def get_employee(employee_id):
 
         if employee.id not in employee_with_programs:
             employee_with_programs[employee.id] = employee
-            employee_with_programs[employee.id].training_programs.append(training_program)
+            employee_with_programs[employee.id].training_programs.append(
+                training_program)
 
         else:
-            employee_with_programs[employee.id].training_programs.append(training_program)
+            employee_with_programs[employee.id].training_programs.append(
+                training_program)
 
     return employee_with_programs[employee_id]
 
@@ -102,6 +104,7 @@ def employee_detail(request, employee_id):
 
     elif request.method == 'POST':
         form_data = request.POST
+        employee = get_employee(employee_id)
 
         if (
             "actual_method" in form_data
@@ -119,9 +122,8 @@ def employee_detail(request, employee_id):
                 (
                     form_data['last_name'], form_data["department"], employee_id,
                 ))
-            
-            if employee.computer is not None:
 
+            if employee.computer is not None:
                 db_cursor.execute("""
                 UPDATE hrapp_employeecomputer
                 SET computer_id = ?
@@ -133,12 +135,11 @@ def employee_detail(request, employee_id):
 
             else:
                 db_cursor.execute("""
-                UPDATE hrapp_employeecomputer
-                SET computer_id = ?
-                WHERE employee_id = ?
+                INSERT INTO hrapp_employeecomputer
+                (employee_id, computer_id, assign_date, unassign_date)
                 """,
                 (
-                    form_data['computer'], employee_id,
+                    employee_id, form_data['computer'], 1, 1
                 ))
 
             return redirect(reverse('hrapp:employees'))
