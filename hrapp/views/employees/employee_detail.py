@@ -35,6 +35,8 @@ def create_employee_computers(cursor, row):
     computer = Computer()
     computer.manufacturer = _row["comp_manufacturer"]
     computer.make = _row["comp_make"]
+    computer.id = _row["comp_id"]
+    employee.computer = computer
     
     return computer
 
@@ -116,7 +118,8 @@ def get_employee_computer(employee_id):
         SELECT
             e.id AS employee_id,
             c.manufacturer AS comp_manufacturer,
-            c.make AS comp_make
+            c.make AS comp_make,
+            c.id AS comp_id
         FROM
             hrapp_employee e
             JOIN hrapp_employeecomputer ec ON ec.employee_id = e.id
@@ -150,7 +153,7 @@ def employee_detail(request, employee_id):
 
     elif request.method == 'POST':
         form_data = request.POST
-        get_employee_computer(employee_id)
+        employee_computer = get_employee_computer(employee_id)
 
         if (
             "actual_method" in form_data
