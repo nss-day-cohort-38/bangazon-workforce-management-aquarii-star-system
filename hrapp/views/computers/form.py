@@ -41,6 +41,7 @@ def get_employees():
         
         return db_cursor.fetchall()
 
+@login_required
 def computer_form(request):
     if request.method == 'GET':
         employees = get_employees()

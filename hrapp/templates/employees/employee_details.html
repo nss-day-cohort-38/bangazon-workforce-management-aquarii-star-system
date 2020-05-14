@@ -21,10 +21,12 @@
     <p> Not signed up for any programs </p>
   {% endif %}
 </section>
+{% if request.user.is_authenticated %}
 <form action="{% url 'hrapp:employee_edit_form' employee.id %}" method="GET">
     {% csrf_token %}
     <button>Edit</button>
 </form>
+{% endif %}
 
 <section id="employee-actions" style="display: flex;"></section>
 {% endblock %}

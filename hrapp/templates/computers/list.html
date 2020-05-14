@@ -4,7 +4,9 @@
   <body>
       {% block content %}
     <h1>Computers</h1>
+    {% if request.user.is_authenticated %}
     <a href="{% url 'hrapp:computer_form' %}">Add a new computer</a>
+    {% endif %}
     <h3>All computers:</h3>
     <ol>
       {% for computer in all_computers %}
