@@ -8,9 +8,11 @@
 {% endif %}
 <form action="{% url 'hrapp:computer' computer.id %}" method="POST">
     {% csrf_token %}
+    {% if request.user.is_authenticated %}
 {% if canDelete %}
     <input type="hidden" name="actual_method" value="DELETE">
     <button>Delete</button>
+    {% endif %}
     {% endif %}
 </form>
 {% endblock %}

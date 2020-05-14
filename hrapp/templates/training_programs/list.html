@@ -3,9 +3,9 @@
 
 {% block content %}
     <h1>Upcoming Training Programs</h1>
-
+    {% if request.user.is_authenticated %}
     <a href="{% url 'hrapp:training_program_form' %}">Add Training</a>
-
+{% endif %}
     <ol class="future_training_programs">
     {% for training_program in future_training_programs %}
         <li class="training_program">

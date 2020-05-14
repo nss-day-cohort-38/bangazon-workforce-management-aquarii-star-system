@@ -10,7 +10,7 @@
       <p>Capacity: {{training_program.capacity}}</p>
     </div>
   </section>
-
+  {% if request.user.is_authenticated %}
   {% if past_event %}
       <p>Note: *events in the past cannot be edited or deleted*<p>
   {% else %}
@@ -25,6 +25,7 @@
         <button>Edit</button>
       </form>
     </section>
+  {% endif %}
   {% endif %}
 
   <section class="employees">
