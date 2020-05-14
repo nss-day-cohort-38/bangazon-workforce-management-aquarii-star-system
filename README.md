@@ -1,4 +1,4 @@
-# Bangazon Workforce Mangement HR Application
+# Bangazon Workforce Management HR Application
 
 ## A group project by:
 
