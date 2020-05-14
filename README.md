@@ -3,6 +3,7 @@
 ## A group project by:
 
 Aquarii Star System:
+- [Matt Reeds](https://github.com/MReeds)
 - [Andrew Green](https://github.com/agreen2601)
 - [Jack Parsons](https://github.com/jcksnparsons)
 - [Alyssa Nycum](https://github.com/alyssanycum)
