@@ -31,25 +31,25 @@ The Bangazon HR App is a full-stack web app that allows a user to interact with 
 - List, detail, and form views/templates
 - List view shows all employees and the departments associated with them
 - Detail view shows the computer and training programs associated with that employee
-- full CRUD functionality
+- Create, read, and update functionality
 
 ### Departments
 - List, detail, and form views/templates
 - List view displays number of employees associated with each department
 - Detailed view displays a list of the employee names associated with the department
-- create, read, and delete functionality
+- Create and read functionality
 
 ### Computers
 - List, detail, and form views/templates 
 - List view displays all computers and the employees associated with each computer
-- full CRUD functionality
-- conditional delete behavior (computers can only be deleted if they are not assigned to a user)
+- Create, read, and delete functionality
+- Conditional delete behavior (computers can only be deleted if they are not assigned to a user)
 
 ### Training Programs 
-- detailed view displays employees associated with them
+- Detailed view displays employees associated with them
 - List view sorts the programs into past and upcoming based on today's date 
-- full CRUD functionality
-- conditional delete/edit behavior (past events cannot be modified)
+- Full CRUD functionality
+- Conditional delete/edit behavior (past events cannot be modified)
 
 ## Installation Steps:
 
